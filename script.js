@@ -48,3 +48,48 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         }
     });
 });
+
+
+
+
+
+
+async function getAPIKey() {
+    const response = await fetch("/.netlify/functions/getAPIKey");
+    const config = await response.json();
+    return config.apiKey;
+}
+
+async function getAnswer() {
+    const input = document.getElementById("userInput").value;
+    const responseText = document.getElementById("response");
+
+    // Tampilkan pesan "Thinking..." saat API sedang diproses
+    responseText.innerText = "Thinking... ⏳";
+
+    try {
+        // Ambil API Key dari Netlify Function
+        const apiKey = await getAPIKey();
+
+        const response = await fetch("https://api-inference.huggingface.co/models/facebook/blenderbot-400M-distill", {
+            method: "POST",
+            headers: {
+                "Authorization": `Bearer ${apiKey}`,  // Pakai API Key dari server
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ inputs: input })
+        });
+
+        const data = await response.json();
+
+        if (Array.isArray(data) && data.length > 0 && data[0].generated_text) {
+            responseText.innerText = data[0].generated_text;
+        } else if (data.hasOwnProperty("error")) {
+            responseText.innerText = "Error: " + data.error;
+        } else {
+            responseText.innerText = "Gagal mendapatkan jawaban.";
+        }
+    } catch (error) {
+        responseText.innerText = "Terjadi kesalahan: " + error.message;
+    }
+}

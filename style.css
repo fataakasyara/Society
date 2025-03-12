@@ -1,0 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&display=swap');
+
+#cinzel  {
+    font-family: 'Cinzel Decorative', serif;
+}
+
+.hero-section {
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('/api/placeholder/1200/400');
+    background-size: cover;
+    background-position: center;
+
+}

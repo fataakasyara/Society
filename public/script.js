@@ -53,13 +53,6 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 
 
 
-
-async function getAPIKey() {
-    const response = await fetch("/.netlify/functions/getAPIKey");
-    const config = await response.json();
-    return config.apiKey;
-}
-
 async function getAnswer() {
     const input = document.getElementById("userInput").value;
     const responseText = document.getElementById("response");
@@ -68,16 +61,13 @@ async function getAnswer() {
     responseText.innerText = "Thinking... ⏳";
 
     try {
-        // Ambil API Key dari Netlify Function
-        const apiKey = await getAPIKey();
-
-        const response = await fetch("https://api-inference.huggingface.co/models/facebook/blenderbot-400M-distill", {
+        // Kirim teks ke Netlify Function, bukan API Hugging Face langsung
+        const response = await fetch("/.netlify/functions/getAPIKey", {
             method: "POST",
             headers: {
-                "Authorization": `Bearer ${apiKey}`,  // Pakai API Key dari server
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({ inputs: input })
+            body: JSON.stringify({ input })  // Kirim teks input ke function
         });
 
         const data = await response.json();

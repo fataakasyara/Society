@@ -151,26 +151,23 @@
                         </div>
                         <p class="ml-3 text-sm text-gray-500">How can I assist you today?</p>
                     </div>
+                    <div id="response" class="text-gray-700 p-5 bg-gray-50 rounded-xl border border-gray-100 min-h-16 shadow-inner">
+                        <div class="flex items-start">
+                            <p class="ml-3">Answer will appear here</p>
+                        </div>
+                    </div>
                 </div>
-                
                 <div class="flex items-center mb-6">
                     <input type="text" id="userInput" class="flex-1 p-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent shadow-sm" placeholder="Type your question...">
                     <button onclick="getAnswer()" class="ml-3 bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 transition-colors duration-300 font-medium shadow-sm flex items-center">
                         <span>Send</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-2 hidden md:block" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
                         </svg>
                     </button>
                 </div>
                 
-                <div id="response" class="text-gray-700 p-5 bg-gray-50 rounded-xl border border-gray-100 min-h-16 shadow-inner">
-                    <div class="flex items-start">
-                        <div class="w-8 h-8 rounded-full bg-green-500 flex-shrink-0 flex items-center justify-center text-white text-sm font-bold mt-1">
-                            AI
-                        </div>
-                        <p class="ml-3">Answer will appear here</p>
-                    </div>
-                </div>
+
                 
                 <div class="mt-6 text-center">
                     <p class="text-xs text-gray-500">Powered by Nolyx Society AI - For educational purposes only</p>

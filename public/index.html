@@ -36,7 +36,7 @@
 
                     <a href="#p" class="font-medium text-gray-700 hover:text-green-700 transition-colors">Join</a>
                     <a href="#about" class="font-medium text-gray-700 hover:text-green-700 transition-colors">About</a>
-                    <a href="#founder" class="font-medium text-gray-700 hover:text-green-700 transition-colors">Founder</a>
+                    <a href="#governance" class="font-medium text-gray-700 hover:text-green-700 transition-colors">Governance</a>
                     
                     <div class="relative">
                         <a href="" class="text-gray-700 hover:text-green-700">
@@ -60,7 +60,7 @@
 
                 <a href="#p" class="block py-2 text-gray-700 hover:text-green-700">Join</a>
                 <a href="#about" class="block py-2 text-gray-700 hover:text-green-700">About</a>
-                <a href="#founder" class="block py-2 text-gray-700 hover:text-green-700"></a>
+                <a href="#governance" class="block py-2 text-gray-700 hover:text-green-700">Governance</a>
                 <div class="py-2">
                     <a href="" class="flex items-center text-gray-700">
                     
@@ -79,6 +79,7 @@
 
         </div>
     </section>
+
     <section id="category" class="py-20 bg-gradient-to-b from-gray-50 to-gray-100">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-12">
@@ -93,7 +94,7 @@
             </div>
     
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
-                <a href="#" class="relative group overflow-hidden rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
+                <a href="#" class="relative group overflow-hidden rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 green-filter">
                     <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent opacity-70 z-10"></div>
                     <img src="https://cdn.coin68.com/uploads/2021/01/999x-999.gif" alt="Smart Contracts" class="w-full h-56 object-cover transition-transform duration-500 group-hover:scale-110">
                     <div class="absolute inset-0 flex flex-col items-center justify-end p-6 z-20">
@@ -101,7 +102,7 @@
                     </div>
                 </a>
     
-                <a href="#" class="relative group overflow-hidden rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
+                <a href="#" class="relative group overflow-hidden rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 green-filter">
                     <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent opacity-70 z-10"></div>
                     <img src="https://cdn-icons-gif.flaticon.com/11700/11700968.gif" alt="Blockchain" class="w-full h-56 object-cover transition-transform duration-500 group-hover:scale-110">
                     <div class="absolute inset-0 flex flex-col items-center justify-end p-6 z-20">
@@ -109,7 +110,7 @@
                     </div>
                 </a>
     
-                <a href="#" class="relative group overflow-hidden rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
+                <a href="#" class="relative group overflow-hidden rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 green-filter">
                     <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent opacity-70 z-10"></div>
                     <img src="https://cryptounity.org/wp-content/uploads/2023/04/16.gif" alt="Cryptography" class="w-full h-56 object-cover transition-transform duration-500 group-hover:scale-110">
                     <div class="absolute inset-0 flex flex-col items-center justify-end p-6 z-20">
@@ -117,7 +118,7 @@
                     </div>
                 </a>
     
-                <a href="#" class="relative group overflow-hidden rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
+                <a href="#" class="relative group overflow-hidden rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 green-filter">
                     <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent opacity-70 z-10"></div>
                     <img src="https://trends.vc/wp-content/uploads/2021/09/defi-optimized.gif" alt="Web 3.0" class="w-full h-56 object-cover transition-transform duration-500 group-hover:scale-110">
                     <div class="absolute inset-0 flex flex-col items-center justify-end p-6 z-20">
@@ -127,12 +128,6 @@
             </div>
     
             <div class="text-center mt-12">
-                <a href="#" class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-orange-500 hover:bg-orange-600 transition-colors duration-300">
-                    View All Categories
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
-                        <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
-                    </svg>
-                </a>
             </div>
         </div>
     </section>
@@ -279,20 +274,21 @@
     </section>
     
     
-    <section id="founder" class="py-6 md:py-16 bg-gradient-to-br from-gray-50 to-gray-100 relative overflow-hidden">
+    <section id="governance" class="py-6 md:py-16 bg-gradient-to-br from-gray-50 to-gray-100 relative overflow-hidden">
         <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
             <h2 class="text-xl md:text-3xl font-bold text-gray-800 mb-4 md:mb-8 relative">
                 Governance of Society
                 <span class="block h-1 w-16 md:w-20 bg-green-600 mt-1 md:mt-2"></span>
             </h2>
             
-            <div class="carddesign bg-white rounded-lg md:rounded-2xl shadow-lg overflow-hidden relative z-10 hover:shadow-xl transition-shadow duration-300">
+            <!-- President Card -->
+            <div class="carddesign bg-white rounded-lg md:rounded-2xl shadow-lg overflow-hidden relative z-10 hover:shadow-xl transition-shadow duration-300 mb-8">
                 <div class="flex flex-col md:flex-row md:items-center">
-                    <!-- Designer Image Section - Smaller on mobile -->
+                    <!-- President Image Section -->
                     <div class="w-full md:w-1/4 p-3 md:p-6 flex justify-center">
                         <div class="relative">
                             <div class="w-24 h-24 md:w-48 md:h-48 rounded-full overflow-hidden ring-2 md:ring-4 ring-green-500 ring-opacity-50">
-                                <img src="https://avatars.githubusercontent.com/u/140477415?v=4" alt="Designer" class="w-full h-full object-cover">
+                                <img src="https://avatars.githubusercontent.com/u/140477415?v=4" alt="President" class="w-full h-full object-cover">
                             </div>
                             <div class="absolute -bottom-1 md:-bottom-2 right-0 bg-green-500 text-white px-1 md:px-3 py-0.5 md:py-1 rounded-full text-xs md:text-sm font-medium">
                                 Available
@@ -300,7 +296,7 @@
                         </div>
                     </div>
                     
-                    <!-- Designer Info Section -->
+                    <!-- President Info Section -->
                     <div class="p-3 md:p-8 md:w-3/4">
                         <div class="flex flex-col md:flex-row items-center md:items-start gap-1 md:gap-0 mb-3 md:mb-4">
                             <div class="text-center md:text-left">
@@ -314,7 +310,7 @@
                             </div>
                         </div>
     
-                        <!-- Stats Grid - Smaller on mobile -->
+                        <!-- Stats Grid -->
                         <div class="grid grid-cols-3 gap-1 md:gap-6 mb-3 md:mb-8">
                             <div class="stats-card text-center p-1.5 md:p-4 bg-gray-50 rounded-lg md:rounded-xl hover:bg-green-50 transition-colors duration-300 cursor-pointer border border-gray-100">
                                 <div class="text-xl md:text-4xl font-bold text-green-700">
@@ -336,7 +332,7 @@
                             </div>
                         </div>
     
-                        <!-- Skills Tags - Hide some tags on mobile -->
+                        <!-- Skills Tags -->
                         <div class="space-y-2 md:space-y-4">
                             <div class="flex flex-wrap gap-1 md:gap-3 mb-3 md:mb-6">
                                 <span class="px-1.5 md:px-3 py-0.5 md:py-1 bg-gray-100 text-gray-700 rounded-full text-xs md:text-sm">Ethical Hacking</span>
@@ -347,15 +343,13 @@
                                 <span class="px-1.5 md:px-3 py-0.5 md:py-1 bg-gray-100 text-gray-700 rounded-full text-xs md:text-sm">Web Development</span>
                             </div>
                             
-                            <!-- Action Buttons - Smaller on mobile -->
+                            <!-- Action Buttons -->
                             <div class="flex flex-col sm:flex-row gap-2 md:gap-4">
-                                <a href="https://www.linkedin.com/in/kasyara/" 
-                                target="_blank" 
-                                   class="flex-1 inline-flex items-center justify-center px-3 md:px-6 py-1.5 md:py-3 bg-green-600 hover:bg-green-700 text-white rounded-md md:rounded-lg shadow md:shadow-lg hover:shadow-xl transition-all duration-300">
+                                <a href="https://www.linkedin.com/in/kasyara/" target="_blank" class="flex-1 inline-flex items-center justify-center px-3 md:px-6 py-1.5 md:py-3 bg-green-600 hover:bg-green-700 text-white rounded-md md:rounded-lg shadow md:shadow-lg hover:shadow-xl transition-all duration-300">
                                     <i class="fab fa-linkedin mr-1"></i> 
                                     <span class="text-xs md:text-base">LinkedIn</span>
                                 </a>
-                                <a href="https://www.paypal.com/paypalme/nolyxxx" target="_blank" class="px-3 md:px-6 py-1.5 md:py-3 bg-yellow-500 hover:bg-yellow-600 text-white rounded-md md:rounded-lg transition-colors duration-300 flex items-center justify-center" >
+                                <a href="https://www.paypal.com/paypalme/nolyxxx" target="_blank" class="px-3 md:px-6 py-1.5 md:py-3 bg-yellow-500 hover:bg-yellow-600 text-white rounded-md md:rounded-lg transition-colors duration-300 flex items-center justify-center">
                                     <i class="fas fa-money-bill-wave mr-1 text-xs md:text-base"></i>
                                     <span class="text-xs md:text-base">Donate</span>
                                 </a>
@@ -364,8 +358,81 @@
                     </div>
                 </div>
             </div>
+            
+            <!-- Government Officials Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
+                <!-- Grand Chancellor Card -->
+                <div class="carddesign bg-white rounded-lg md:rounded-xl shadow-md overflow-hidden relative z-10 hover:shadow-lg transition-shadow duration-300">
+                    <div class="p-4 text-center">
+                        <div class="mx-auto w-20 h-20 md:w-24 md:h-24 rounded-full overflow-hidden ring-2 ring-blue-500 ring-opacity-50 mb-3">
+                            <img src="https://media.tenor.com/lcuvD0zkFNMAAAAM/question-mark.gif" alt="Grand Chancellor" class="w-full h-full object-cover">
+                        </div>
+                        <div class="mb-2">
+                            <h4 class="text-md md:text-xl font-bold text-gray-800">Contribute to post name</h4>
+                            <p class="text-xs md:text-sm text-gray-600">Grand Chancellor of the Nolyx Society</p>
+                        </div>
+                        <div class="flex justify-center mb-2">
+                            <span class="px-2 py-0.5 bg-blue-100 text-blue-800 rounded-full text-xs font-medium">
+                                Diplomatic Affairs
+                            </span>
+                        </div>
+                        <div class="flex justify-center gap-2">
+                            <a href="#" class="inline-flex items-center justify-center px-2 py-1 bg-blue-600 hover:bg-blue-700 text-white rounded-md text-xs transition-colors duration-300">
+                                <i class="fab fa-linkedin mr-1"></i> LinkedIn
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Supreme Commander Card -->
+                <div class="carddesign bg-white rounded-lg md:rounded-xl shadow-md overflow-hidden relative z-10 hover:shadow-lg transition-shadow duration-300">
+                    <div class="p-4 text-center">
+                        <div class="mx-auto w-20 h-20 md:w-24 md:h-24 rounded-full overflow-hidden ring-2 ring-red-500 ring-opacity-50 mb-3">
+                            <img src="https://media.tenor.com/lcuvD0zkFNMAAAAM/question-mark.gif" alt="Supreme Commander" class="w-full h-full object-cover">
+                        </div>
+                        <div class="mb-2">
+                            <h4 class="text-md md:text-xl font-bold text-gray-800">Contribute to post name</h4>
+                            <p class="text-xs md:text-sm text-gray-600">Supreme Commander of the Nolyx Society</p>
+                        </div>
+                        <div class="flex justify-center mb-2">
+                            <span class="px-2 py-0.5 bg-red-100 text-red-800 rounded-full text-xs font-medium">
+                                Military Affairs
+                            </span>
+                        </div>
+                        <div class="flex justify-center gap-2">
+                            <a href="#" class="inline-flex items-center justify-center px-2 py-1 bg-red-600 hover:bg-red-700 text-white rounded-md text-xs transition-colors duration-300">
+                                <i class="fab fa-linkedin mr-1"></i> LinkedIn
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- High Judge Card -->
+                <div class="carddesign bg-white rounded-lg md:rounded-xl shadow-md overflow-hidden relative z-10 hover:shadow-lg transition-shadow duration-300">
+                    <div class="p-4 text-center">
+                        <div class="mx-auto w-20 h-20 md:w-24 md:h-24 rounded-full overflow-hidden ring-2 ring-purple-500 ring-opacity-50 mb-3">
+                            <img src="https://media.tenor.com/lcuvD0zkFNMAAAAM/question-mark.gif" alt="High Judge" class="w-full h-full object-cover">
+                        </div>
+                        <div class="mb-2">
+                            <h4 class="text-md md:text-xl font-bold text-gray-800">Contribute to post name</h4>
+                            <p class="text-xs md:text-sm text-gray-600">High Judge of the Nolyx Society</p>
+                        </div>
+                        <div class="flex justify-center mb-2">
+                            <span class="px-2 py-0.5 bg-purple-100 text-purple-800 rounded-full text-xs font-medium">
+                                Judicial Affairs
+                            </span>
+                        </div>
+                        <div class="flex justify-center gap-2">
+                            <a href="#" class="inline-flex items-center justify-center px-2 py-1 bg-purple-600 hover:bg-purple-700 text-white rounded-md text-xs transition-colors duration-300">
+                                <i class="fab fa-linkedin mr-1"></i> LinkedIn
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
+
     <footer class="bg-green-800 text-white py-8">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col md:flex-row justify-between mb-8">

@@ -11,3 +11,6 @@
 
 }
 
+.green-filter img {
+    filter: hue-rotate(255deg);
+}

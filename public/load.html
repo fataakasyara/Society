@@ -154,7 +154,6 @@
         </div>
         <div class="text">Loading</div>
     </div>
-    <script src="script.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // Create a canvas to process the logo
@@ -186,6 +185,15 @@
             // Initialize the animation
             createNeonOutline();
         });
+
+
+
+
+        setTimeout(() => {
+            window.location.href = "index.html"; // Kembali ke halaman utama setelah loading
+        }, 4500); // 3 detik loading
     </script>
+
+
 </body>
 </html>

@@ -89,15 +89,11 @@ async function getAnswer() {
 
 
 document.addEventListener("DOMContentLoaded", function () {
-    const links = document.querySelectorAll("a"); // Tangkap semua link
-
-    links.forEach(link => {
-        link.addEventListener("click", function (event) {
-            event.preventDefault(); // Cegah link langsung berpindah
-            let targetPage = this.href;
-            sessionStorage.setItem("nextPage", targetPage); // Simpan halaman tujuan
-            window.location.href = "load.html"; // Arahkan ke halaman loading
-        });
-    });
+    if (!sessionStorage.getItem("visited")) {
+        sessionStorage.setItem("nextPage", window.location.href);
+        sessionStorage.setItem("visited", "true");
+        window.location.href = "load.html";
+    }
 });
+
 

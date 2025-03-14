@@ -554,6 +554,16 @@
         </div>
     </footer>
 <script src="script.js"></script>
+<script>
+    if (!localStorage.getItem("hasLoaded")) {
+        localStorage.setItem("hasLoaded", "true"); // Tandai bahwa loading sudah muncul
+        window.location.href = "load.html"; // Arahkan ke loading screen
+    }
+</script>
+
+
+
+
 </body>
 </html>
 

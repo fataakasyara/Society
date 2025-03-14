@@ -1,8 +1,3 @@
 [build]
   functions = "netlify/functions"
   publish = "public"
-[[redirects]]
-  from = "http://nolyx.sytes.net/*"
-  to = "https://societiez-nolyx.hackgate.net/"
-  status = 301
-  force = true

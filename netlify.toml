@@ -3,6 +3,6 @@
   publish = "public"
 [[redirects]]
   from = "http://nolyx.sytes.net/*"
-  to = "https://nolyx.sytes.net/:splat"
+  to = "https://societiez-nolyx.hackgate.net/"
   status = 301
   force = true

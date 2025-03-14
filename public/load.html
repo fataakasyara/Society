@@ -160,7 +160,6 @@
         </div>
         <div class="text">Loading</div>
     </div>
-    <script src="script.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // Create a canvas to process the logo
@@ -194,7 +193,12 @@
         });
 
 
-
+        document.addEventListener("DOMContentLoaded", function () {
+    if (!sessionStorage.getItem("loaded")) {
+        sessionStorage.setItem("loaded", "true");
+        window.location.href = "/load";
+    }
+});
     </script>
 
 

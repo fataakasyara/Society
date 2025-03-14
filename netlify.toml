@@ -1,3 +1,8 @@
 [build]
   functions = "netlify/functions"
   publish = "public"
+[[redirects]]
+  from = "/load"
+  to = "/index"
+  status = 200
+  force = true

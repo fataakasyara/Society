@@ -555,6 +555,7 @@
     </footer>
 <script src="script.js"></script>
 <script>
+    sessionStorage.setItem("lastPage", window.location.pathname.replace("/", ""));
     if (!localStorage.getItem("hasLoaded")) {
         localStorage.setItem("hasLoaded", "true"); // Tandai bahwa loading sudah muncul
         window.location.href = "load.html"; // Arahkan ke loading screen

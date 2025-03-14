@@ -141,7 +141,14 @@
             }
         }
     </style>
+    <script>
+        setTimeout(() => {
+            let targetPage = sessionStorage.getItem("lastPage") || "index"; 
+            window.location.href = `/${targetPage}`;
+        }, 3000); // 3 detik delay sebelum redirect
+    </script>
 </head>
+
 <body>
     <div class="loader-container">
         <div class="glow"></div>
@@ -188,10 +195,6 @@
 
 
 
-
-        setTimeout(() => {
-            window.location.href = "index.html"; // Kembali ke halaman utama setelah loading
-        }, 4500); // 3 detik loading
     </script>
 
 

@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NOLYX Neon Contour Loading Animation</title>
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: #0f0f0f;
+            overflow: hidden;
+            font-family: Arial, sans-serif;
+        }
+        
+        .loader-container {
+            position: relative;
+            width: 240px;
+            height: 240px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .logo-container {
+            position: relative;
+            width: 150px;
+            height: 150px;
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        .logo {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            z-index: 2;
+        }
+        
+        .logo-outline {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            filter: drop-shadow(0 0 8px #2ecc71) drop-shadow(0 0 20px #2ecc71);
+            z-index: 1;
+            animation: pulse 2s infinite ease-in-out;
+        }
+        
+        .text {
+            position: absolute;
+            bottom: -40px;
+            color: #fff;
+            font-size: 16px;
+            font-weight: 300;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            animation: blink 1.5s infinite alternate;
+        }
+        
+        .glow {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(46, 204, 113, 0.15) 0%, rgba(0, 0, 0, 0) 70%);
+            z-index: 0;
+            animation: glow-pulse 3s infinite alternate;
+        }
+        
+        .progress {
+            position: absolute;
+            bottom: -20px;
+            width: 100px;
+            height: 2px;
+            background: rgba(255, 255, 255, 0.1);
+            overflow: hidden;
+        }
+        
+        .progress-bar {
+            height: 100%;
+            width: 0%;
+            background: #2ecc71;
+            box-shadow: 0 0 10px #2ecc71;
+            animation: loading 2s infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) rotateZ(0deg);
+            }
+            50% {
+                transform: translateY(-10px) rotateZ(2deg);
+            }
+        }
+        
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 0.7;
+                transform: scale(1.05);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.15);
+            }
+        }
+        
+        @keyframes glow-pulse {
+            0% {
+                opacity: 0.5;
+                transform: scale(1);
+            }
+            100% {
+                opacity: 0.8;
+                transform: scale(1.2);
+            }
+        }
+        
+        @keyframes loading {
+            0% {
+                width: 0%;
+            }
+            50% {
+                width: 70%;
+            }
+            100% {
+                width: 100%;
+            }
+        }
+        
+        @keyframes blink {
+            from {
+                opacity: 0.3;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="loader-container">
+        <div class="glow"></div>
+        <div class="logo-container">
+            <img src="gambar/nolyxhd.png" alt="NOLYX Logo" class="logo">
+            <img src="gambar/nolyxhd.png" alt="NOLYX Logo Outline" class="logo-outline" id="logo-outline">
+        </div>
+        <div class="progress">
+            <div class="progress-bar"></div>
+        </div>
+        <div class="text">Loading</div>
+    </div>
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Create a canvas to process the logo
+            function createNeonOutline() {
+                const originalLogo = document.querySelector('.logo');
+                const outlineLogo = document.getElementById('logo-outline');
+                
+                // When the logo is loaded
+                originalLogo.onload = function() {
+                    // Apply a special filter to the outline version
+                    outlineLogo.style.filter = 'brightness(0) invert(0) sepia(1) saturate(10) hue-rotate(100deg) brightness(1.2) drop-shadow(0 0 8px #2ecc71) drop-shadow(0 0 12px #2ecc71)';
+                    
+                    // Animate the dots around the logo
+                    animateLoadingText();
+                };
+            }
+            
+            // Animate the loading text with dots
+            function animateLoadingText() {
+                const loadingText = document.querySelector('.text');
+                let dotCount = 0;
+                
+                setInterval(() => {
+                    dotCount = (dotCount + 1) % 4;
+                    loadingText.textContent = 'Loading' + '.'.repeat(dotCount);
+                }, 500);
+            }
+            
+            // Initialize the animation
+            createNeonOutline();
+        });
+    </script>
+</body>
+</html>

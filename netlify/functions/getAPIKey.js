@@ -4,7 +4,7 @@ export async function handler(event) {
     try {
         const { input } = JSON.parse(event.body);
 
-        const response = await fetch("https://api-inference.huggingface.co/models/facebook/blenderbot-400M-distill", {
+        const response = await fetch("https://api-inference.huggingface.co/models/Qwen/QwQ-32B", {
             method: "POST",
             headers: {
                 "Authorization": `Bearer ${process.env.HF_API_KEY}`,  // API key dari Environment Variables
@@ -26,3 +26,5 @@ export async function handler(event) {
         };
     }
 }
+
+

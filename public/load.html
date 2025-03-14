@@ -142,10 +142,9 @@
         }
     </style>
     <script>
-        setTimeout(() => {
-            let targetPage = sessionStorage.getItem("lastPage") || "index"; 
-            window.location.href = `/${targetPage}`;
-        }, 3000); // 3 detik delay sebelum redirect
+    setTimeout(function() {
+            window.location.href = "/index";
+        }, 3000); // Ganti angka 3000 untuk durasi dalam milidetik (3000ms = 3 detik)
     </script>
 </head>
 

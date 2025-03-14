@@ -1,8 +1,7 @@
 [build]
   functions = "netlify/functions"
   publish = "public"
-[[redirects]]
+  [[redirects]]
   from = "/load"
-  to = "/index"
+  to = "/load.html"
   status = 200
-  force = true

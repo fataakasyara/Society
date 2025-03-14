@@ -96,4 +96,10 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 });
 
+document.addEventListener("DOMContentLoaded", function () {
+    if (!sessionStorage.getItem("loaded")) {
+        sessionStorage.setItem("loaded", "true");
+        window.location.href = "/load";
+    }
+});
 

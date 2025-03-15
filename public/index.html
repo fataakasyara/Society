@@ -328,9 +328,6 @@
                             <div class="w-24 h-24 md:w-48 md:h-48 rounded-full overflow-hidden ring-2 md:ring-4 ring-green-500 ring-opacity-50">
                                 <img src="https://avatars.githubusercontent.com/u/140477415?v=4" alt="President" class="w-full h-full object-cover">
                             </div>
-                            <div class="absolute -bottom-1 md:-bottom-2 right-0 bg-green-500 text-white px-1 md:px-3 py-0.5 md:py-1 rounded-full text-xs md:text-sm font-medium">
-                                Available
-                            </div>
                         </div>
                     </div>
                     
@@ -579,7 +576,30 @@
     (function(){if(!window.chatbase||window.chatbase("getState")!=="initialized"){window.chatbase=(...arguments)=>{if(!window.chatbase.q){window.chatbase.q=[]}window.chatbase.q.push(arguments)};window.chatbase=new Proxy(window.chatbase,{get(target,prop){if(prop==="q"){return target.q}return(...args)=>target(prop,...args)}})}const onLoad=function(){const script=document.createElement("script");script.src="https://www.chatbase.co/embed.min.js";script.id="xLREWrmWyxgzLsoIPnyv-";script.domain="www.chatbase.co";document.body.appendChild(script)};if(document.readyState==="complete"){onLoad()}else{window.addEventListener("load",onLoad)}})();
     </script>
 
+<script>
+    function openPopup() {
+    document.getElementById("popupModal").classList.remove("hidden");
+}
 
+function closePopup() {
+    document.getElementById("popupModal").classList.add("hidden");
+}
+
+function verifyHuman() {
+document.getElementById("verifyStatus").classList.remove("hidden");
+
+setTimeout(() => {
+let whatsappLink = "whatsapp://chat?code=COlHSaFaFUiCBegugNfufA";
+let fallbackLink = "https://chat.whatsapp.com/COlHSaFaFUiCBegugNfufA";
+
+window.location.href = whatsappLink; // Coba buka aplikasi
+setTimeout(() => {
+    window.location.href = fallbackLink; // Jika gagal, buka di browser
+}, 1000);
+}, 2000);
+}
+ 
+</script>
 
 </body>
 </html>

@@ -59,24 +59,3 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 
 
 
-function openPopup() {
-    document.getElementById("popupModal").classList.remove("hidden");
-}
-
-function closePopup() {
-    document.getElementById("popupModal").classList.add("hidden");
-}
-
-function verifyHuman() {
-document.getElementById("verifyStatus").classList.remove("hidden");
-
-setTimeout(() => {
-let whatsappLink = "whatsapp://chat?code=COlHSaFaFUiCBegugNfufA";
-let fallbackLink = "https://chat.whatsapp.com/COlHSaFaFUiCBegugNfufA";
-
-window.location.href = whatsappLink; // Coba buka aplikasi
-setTimeout(() => {
-    window.location.href = fallbackLink; // Jika gagal, buka di browser
-}, 1000);
-}, 2000);
-}

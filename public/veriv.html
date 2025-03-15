@@ -1,0 +1,27 @@
+<div id="popup" style="display:none; position:fixed; top:50%; left:50%; transform:translate(-50%, -50%); width:300px; background:white; padding:20px; border:1px solid #ccc; text-align:center;">
+    <p>Click the correct number: <strong id="targetNumber"></strong></p>
+    <button onclick="checkAnswer(this)">1</button>
+    <button onclick="checkAnswer(this)">2</button>
+    <button onclick="checkAnswer(this)">3</button>
+</div>
+
+<button onclick="openPopup()">Verify</button>
+
+<script>
+    let correctNumber;
+
+    function openPopup() {
+        correctNumber = Math.floor(Math.random() * 3) + 1;
+        document.getElementById("targetNumber").innerText = correctNumber;
+        document.getElementById("popup").style.display = "block";
+    }
+
+    function checkAnswer(button) {
+        if (parseInt(button.innerText) === correctNumber) {
+            alert("Verified!");
+            document.getElementById("popup").style.display = "none";
+        } else {
+            alert("Wrong! Try again.");
+        }
+    }
+</script>

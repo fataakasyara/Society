@@ -34,7 +34,7 @@
                 <!-- Desktop Menu -->
                 <div class="hidden md:flex items-center space-x-8">
 
-                    <a href="#p" class="font-medium text-gray-700 hover:text-green-700 transition-colors">Join</a>
+                    <a href="#join" class="font-medium text-gray-700 hover:text-green-700 transition-colors">Join</a>
                     <a href="#about" class="font-medium text-gray-700 hover:text-green-700 transition-colors">About</a>
                     <a href="#governance" class="font-medium text-gray-700 hover:text-green-700 transition-colors">Governance</a>
                     
@@ -58,7 +58,7 @@
         <div class="mobile-menu hidden md:hidden bg-white border-t" >
             <div class="px-4 py-2 space-y-3">
 
-                <a href="#p" class="block py-2 text-gray-700 hover:text-green-700">Join</a>
+                <a href="#join" class="block py-2 text-gray-700 hover:text-green-700">Join</a>
                 <a href="#about" class="block py-2 text-gray-700 hover:text-green-700">About</a>
                 <a href="#governance" class="block py-2 text-gray-700 hover:text-green-700">Governance</a>
                 <div class="py-2">
@@ -73,7 +73,7 @@
         <div class="text-center">
             <h1 id="cinzel" class="text-4xl md:text-6xl font-bold mb-4 animate-b">Nolyx Society</h1>
             <br>
-            <a href="https://chat.whatsapp.com/COlHSaFaFUiCBegugNfufA" class="bg-green-700 hover:bg-green-800 text-white px-8 py-3 rounded-full transition-colors animate-pulse" target ="_blank"> 
+            <a href="#join" class="bg-green-700 hover:bg-green-800 text-white px-8 py-3 rounded-full transition-colors animate-pulse" target ="_blank"> 
                 Join Community
             </a>
 
@@ -270,6 +270,77 @@
         </div>
     </section>
     
+
+    <section id="join" class="py-20 bg-gradient-to-r from-green-50 to-emerald-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-16">
+            <div class="text-center mb-10">
+                <h2 class="text-4xl font-bold text-green-800 mb-4">Become a Nolyxian Citizen</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">Learn and make projects together.</p>
+            </div>
+            
+            <div class="flex flex-col items-center justify-center space-y-6">
+                <div class="relative group">
+                    <div class="absolute -inset-1 bg-gradient-to-r from-green-600 to-emerald-500 rounded-3xl blur opacity-50 group-hover:opacity-75 transition duration-300"></div>
+                    <button onclick="openPopup()" class="relative bg-gradient-to-r from-green-600 to-emerald-500 hover:from-green-500 hover:to-emerald-400 text-white font-bold py-4 px-10 rounded-3xl shadow-xl flex items-center justify-center transform transition-all duration-300 hover:scale-105 text-2xl">
+                        <span class="mr-2">Join Now</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                        </svg>
+                    </button>
+                </div>
+                <div class="flex items-center space-x-3 mt-6">
+                    <div class="flex -space-x-2">
+                        <img class="w-10 h-10 rounded-full border-2 border-white" src="https://randomuser.me/api/portraits/men/75.jpg" alt="User Avatar">
+                        <img class="w-10 h-10 rounded-full border-2 border-white" src="https://randomuser.me/api/portraits/women/75.jpg" alt="User Avatar">
+                        <img class="w-10 h-10 rounded-full border-2 border-white" src="https://randomuser.me/api/portraits/men/76.jpg" alt="User Avatar">
+                    </div>
+                    <p class="text-gray-600">Join with <span class="font-semibold text-green-700">180+</span> other Nolyxians</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Popup Modal -->
+    <div id="popupModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden">
+        <div class="bg-white p-6 rounded-lg shadow-lg max-w-sm w-full relative">
+            <button onclick="closePopup()" class="absolute top-2 right-2 text-gray-500 hover:text-gray-700">
+                ✖
+            </button>
+            <h2 class="text-xl font-bold text-green-800 mb-4">Human Verification</h2>
+            <p class="text-gray-600">Click the button below to verify you're human.</p>
+            <button onclick="verifyHuman()" class="mt-4 w-full bg-green-600 hover:bg-green-500 text-white py-2 px-4 rounded-lg">
+                I'm Human
+            </button>
+            <p id="verifyStatus" class="text-green-600 mt-2 hidden">✅ Verified! Redirecting...</p>
+        </div>
+    </div>
+    
+    <script>
+        function openPopup() {
+            document.getElementById("popupModal").classList.remove("hidden");
+        }
+    
+        function closePopup() {
+            document.getElementById("popupModal").classList.add("hidden");
+        }
+    
+        function verifyHuman() {
+    document.getElementById("verifyStatus").classList.remove("hidden");
+
+    setTimeout(() => {
+        let whatsappLink = "whatsapp://chat?code=COlHSaFaFUiCBegugNfufA";
+        let fallbackLink = "https://chat.whatsapp.com/COlHSaFaFUiCBegugNfufA";
+        
+        window.location.href = whatsappLink; // Coba buka aplikasi
+        setTimeout(() => {
+            window.location.href = fallbackLink; // Jika gagal, buka di browser
+        }, 1000);
+    }, 2000);
+}
+
+    </script>
+    
+
     
     <section id="governance" class="py-6 md:py-16 bg-gradient-to-br from-gray-50 to-gray-100 relative overflow-hidden">
         <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">

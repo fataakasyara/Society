@@ -3,9 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://unpkg.com/tailwindcss@^2.2/dist/tailwind.min.css" rel="stylesheet">
+    <!-- <link href="https://unpkg.com/tailwindcss@^2.2/dist/tailwind.min.css" rel="stylesheet"> -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="stylesheet" href="style.css">
     <link rel="icon" href="https://media.licdn.com/dms/image/v2/D4E0BAQEzK_ftJoNHCw/company-logo_200_200/B4EZVMr9W0HgAI-/0/1740748348705/nolyx_logo?e=1749686400&v=beta&t=d6BGJaKwqzFSs45kKHNzOHjycJBPXufUcpX6g0ScSp8">
@@ -23,7 +25,7 @@
             background-position: 0% 0%;
         }
     }">
-    <nav class="fixed top-0 w-full bg-white shadow-lg z-30 mt-0  -mb-16">
+    <nav class="fixed top-0 w-full bg-white shadow-lg z-30 mt-0  mb-16">
         <div class="max-w-7xl mx-auto px-4">
             <div class="flex justify-between h-16">
                 <div class="flex items-center space-x-4">
@@ -83,13 +85,6 @@
     <section id="category" class="py-20 bg-gradient-to-b from-gray-50 to-gray-100">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-12">
-                <h2 class="text-3xl md:text-4xl font-extrabold text-gray-800 inline-flex items-center border-b border-gray-300 pb-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-orange-500 mr-3 md:h-8 md:w-8 sm:h-12 sm:w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-                    </svg>
-                    <span class="md:text-3xl sm:text-2xl text-orange-500">180+ PEOPLE ALREADY JOINED</span>
-                </h2>
-                <div class="h-1 w-20 bg-orange-500 mx-auto mt-4 rounded-full"></div>
                 <span class="text-2xl text-gray-600 mt-4 max-w-2xl mx-auto">Explore our popular <span class="font-bold text-green-700 text-3xl">Web 3.0</span> categories that are trending among our community</span>
             </div>
     
@@ -301,8 +296,8 @@
     </section>
     
     <!-- Popup Modal -->
-    <div id="popupModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden">
-        <div class="bg-white p-6 rounded-lg shadow-lg max-w-sm w-full relative">
+    <div id="popupModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden ">
+        <div class="bg-white p-6 rounded-lg shadow-lg max-w-sm w-full relative ">
             <button onclick="closePopup()" class="absolute top-2 right-2 text-gray-500 hover:text-gray-700">
                 ✖
             </button>
@@ -315,47 +310,21 @@
         </div>
     </div>
     
-    <script>
-        function openPopup() {
-            document.getElementById("popupModal").classList.remove("hidden");
-        }
-    
-        function closePopup() {
-            document.getElementById("popupModal").classList.add("hidden");
-        }
-    
-        function verifyHuman() {
-    document.getElementById("verifyStatus").classList.remove("hidden");
-
-    setTimeout(() => {
-        let whatsappLink = "whatsapp://chat?code=COlHSaFaFUiCBegugNfufA";
-        let fallbackLink = "https://chat.whatsapp.com/COlHSaFaFUiCBegugNfufA";
-        
-        window.location.href = whatsappLink; // Coba buka aplikasi
-        setTimeout(() => {
-            window.location.href = fallbackLink; // Jika gagal, buka di browser
-        }, 1000);
-    }, 2000);
-}
-
-
-    </script>
-    
 
     
-    <section id="governance" class="py-6 md:py-16 bg-gradient-to-br from-gray-50 to-gray-100 relative overflow-hidden">
+    <section id="governance" class="py-6 md:py-16 bg-gradient-to-br from-gray-50 to-gray-100  overflow-hidden">
         <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
-            <h2 class="text-xl md:text-3xl font-bold text-gray-800 mb-4 md:mb-8 relative">
+            <h2 class="text-xl md:text-3xl font-bold text-gray-800 mb-4 md:mb-8 ">
                 Governance of Society
                 <span class="block h-1 w-16 md:w-20 bg-green-600 mt-1 md:mt-2"></span>
             </h2>
             
             <!-- President Card -->
-            <div class="carddesign bg-white rounded-lg md:rounded-2xl shadow-lg overflow-hidden relative z-10 hover:shadow-xl transition-shadow duration-300 mb-8">
+            <div class="carddesign bg-white rounded-lg md:rounded-2xl shadow-lg overflow-hidden   hover:shadow-xl transition-shadow duration-300 mb-8">
                 <div class="flex flex-col md:flex-row md:items-center">
                     <!-- President Image Section -->
                     <div class="w-full md:w-1/4 p-3 md:p-6 flex justify-center">
-                        <div class="relative">
+                        <div class="">
                             <div class="w-24 h-24 md:w-48 md:h-48 rounded-full overflow-hidden ring-2 md:ring-4 ring-green-500 ring-opacity-50">
                                 <img src="https://avatars.githubusercontent.com/u/140477415?v=4" alt="President" class="w-full h-full object-cover">
                             </div>
@@ -431,7 +400,7 @@
             <!-- Government Officials Cards -->
             <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
                 <!-- Grand Chancellor Card -->
-                <div class="carddesign bg-white rounded-lg md:rounded-xl shadow-md overflow-hidden relative z-10 hover:shadow-lg transition-shadow duration-300">
+                <div class="carddesign bg-white rounded-lg md:rounded-xl shadow-md overflow-hidden  hover:shadow-lg transition-shadow duration-300">
                     <div class="p-4 text-center">
                         <div class="mx-auto w-20 h-20 md:w-24 md:h-24 rounded-full overflow-hidden ring-2 ring-blue-500 ring-opacity-50 mb-3">
                             <img src="https://media.tenor.com/lcuvD0zkFNMAAAAM/question-mark.gif" alt="Grand Chancellor" class="w-full h-full object-cover">
@@ -454,7 +423,7 @@
                 </div>
                 
                 <!-- Supreme Commander Card -->
-                <div class="carddesign bg-white rounded-lg md:rounded-xl shadow-md overflow-hidden relative z-10 hover:shadow-lg transition-shadow duration-300">
+                <div class="carddesign bg-white rounded-lg md:rounded-xl shadow-md overflow-hidden  hover:shadow-lg transition-shadow duration-300">
                     <div class="p-4 text-center">
                         <div class="mx-auto w-20 h-20 md:w-24 md:h-24 rounded-full overflow-hidden ring-2 ring-red-500 ring-opacity-50 mb-3">
                             <img src="https://media.tenor.com/lcuvD0zkFNMAAAAM/question-mark.gif" alt="Supreme Commander" class="w-full h-full object-cover">
@@ -477,7 +446,7 @@
                 </div>
                 
                 <!-- High Judge Card -->
-                <div class="carddesign bg-white rounded-lg md:rounded-xl shadow-md overflow-hidden relative z-10 hover:shadow-lg transition-shadow duration-300">
+                <div class="carddesign bg-white rounded-lg md:rounded-xl shadow-md overflow-hidden  hover:shadow-lg transition-shadow duration-300">
                     <div class="p-4 text-center">
                         <div class="mx-auto w-20 h-20 md:w-24 md:h-24 rounded-full overflow-hidden ring-2 ring-purple-500 ring-opacity-50 mb-3">
                             <img src="https://media.tenor.com/lcuvD0zkFNMAAAAM/question-mark.gif" alt="High Judge" class="w-full h-full object-cover">
@@ -501,7 +470,9 @@
             </div>
         </div>
     </section>
-
+    <script>
+        (function(){if(!window.chatbase||window.chatbase("getState")!=="initialized"){window.chatbase=(...arguments)=>{if(!window.chatbase.q){window.chatbase.q=[]}window.chatbase.q.push(arguments)};window.chatbase=new Proxy(window.chatbase,{get(target,prop){if(prop==="q"){return target.q}return(...args)=>target(prop,...args)}})}const onLoad=function(){const script=document.createElement("script");script.src="https://www.chatbase.co/embed.min.js";script.id="xLREWrmWyxgzLsoIPnyv-";script.domain="www.chatbase.co";document.body.appendChild(script)};if(document.readyState==="complete"){onLoad()}else{window.addEventListener("load",onLoad)}})();
+        </script>
     <footer class="bg-green-800 text-white py-8">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <!-- Mobile Only Logo -->
@@ -625,17 +596,9 @@
             </div>
         </div>
     </footer>
-    <script>
-        (function(){if(!window.chatbase||window.chatbase("getState")!=="initialized"){window.chatbase=(...arguments)=>{if(!window.chatbase.q){window.chatbase.q=[]}window.chatbase.q.push(arguments)};window.chatbase=new Proxy(window.chatbase,{get(target,prop){if(prop==="q"){return target.q}return(...args)=>target(prop,...args)}})}const onLoad=function(){const script=document.createElement("script");script.src="https://www.chatbase.co/embed.min.js";script.id="xLREWrmWyxgzLsoIPnyv-";script.domain="www.chatbase.co";document.body.appendChild(script)};if(document.readyState==="complete"){onLoad()}else{window.addEventListener("load",onLoad)}})();
-        </script>
+
 <script src="script.js"></script>
-<script>
-    sessionStorage.setItem("lastPage", window.location.pathname.replace("/", ""));
-    if (!localStorage.getItem("hasLoaded")) {
-        localStorage.setItem("hasLoaded", "true"); // Tandai bahwa loading sudah muncul
-        window.location.href = "load.html"; // Arahkan ke loading screen
-    }
-</script>
+
 
 
 

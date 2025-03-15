@@ -53,49 +53,30 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 
 
 
-async function getAnswer() {
-    const input = document.getElementById("userInput").value;
-    const responseText = document.getElementById("response");
 
-    // Tampilkan pesan "Thinking..." saat API sedang diproses
-    responseText.innerText = "Thinking... ⏳";
 
-    try {
-        // Kirim teks ke Netlify Function, bukan API Hugging Face langsung
-        const response = await fetch("/.netlify/functions/getAPIKey", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({ input })  // Kirim teks input ke function
-        });
 
-        const data = await response.json();
 
-        if (Array.isArray(data) && data.length > 0 && data[0].generated_text) {
-            responseText.innerText = data[0].generated_text;
-        } else if (data.hasOwnProperty("error")) {
-            responseText.innerText = "Error: " + data.error;
-        } else {
-            responseText.innerText = "Gagal mendapatkan jawaban.";
-        }
-    } catch (error) {
-        responseText.innerText = "Terjadi kesalahan: " + error.message;
-    }
+
+
+function openPopup() {
+    document.getElementById("popupModal").classList.remove("hidden");
 }
 
+function closePopup() {
+    document.getElementById("popupModal").classList.add("hidden");
+}
 
+function verifyHuman() {
+document.getElementById("verifyStatus").classList.remove("hidden");
 
+setTimeout(() => {
+let whatsappLink = "whatsapp://chat?code=COlHSaFaFUiCBegugNfufA";
+let fallbackLink = "https://chat.whatsapp.com/COlHSaFaFUiCBegugNfufA";
 
-
-document.addEventListener("DOMContentLoaded", function () {
-    if (!sessionStorage.getItem("visited")) {
-        sessionStorage.setItem("nextPage", window.location.href);
-        sessionStorage.setItem("visited", "true");
-        window.location.href = "load.html";
-    }
-});
-
-
-
-
+window.location.href = whatsappLink; // Coba buka aplikasi
+setTimeout(() => {
+    window.location.href = fallbackLink; // Jika gagal, buka di browser
+}, 1000);
+}, 2000);
+}

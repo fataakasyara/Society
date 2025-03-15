@@ -328,14 +328,16 @@
     document.getElementById("verifyStatus").classList.remove("hidden");
 
     setTimeout(() => {
-        let whatsappLink = "whatsapp://chat?code=I2Q80w1zRUrEGbiszB1Crd";
-        let fallbackLink = "https://chat.whatsapp.com/I2Q80w1zRUrEGbiszB1Crd";
+        let whatsappLink = "whatsapp://chat?code=COlHSaFaFUiCBegugNfufA";
+        let fallbackLink = "https://chat.whatsapp.com/COlHSaFaFUiCBegugNfufA";
         
         window.location.href = whatsappLink; // Coba buka aplikasi
         setTimeout(() => {
             window.location.href = fallbackLink; // Jika gagal, buka di browser
         }, 1000);
     }, 2000);
+}
+
 }
 
     </script>

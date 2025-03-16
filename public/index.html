@@ -25,58 +25,67 @@
             background-position: 0% 0%;
         }
     }">
-    <nav class="fixed top-0 w-full bg-white shadow-lg z-30 mt-0  mb-16">
-        <div class="max-w-7xl mx-auto px-4">
-            <div class="flex justify-between h-16">
+<nav class="fixed top-0 w-full bg-white shadow-lg z-30 mt-0 mb-16">
+    <div class="max-w-7xl mx-auto px-4">
+        <div class="flex justify-between h-16">
+            <div class="flex items-center space-x-4">
+                <img src="gambar/nolyxhd.png" alt="Nolyx" class="h-10 w-10">
+                <span id="cinzel" class="text-2xl font-bold text-green-700">Nolyx</span>
+            </div>
+
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex items-center space-x-6">
+                <a href="#join" class="font-medium text-gray-700 hover:text-green-700 transition-colors">Join</a>
+                <a href="#about" class="font-medium text-gray-700 hover:text-green-700 transition-colors">About</a>
+                <a href="#governance" class="font-medium text-gray-700 hover:text-green-700 transition-colors">Governance</a>
+                
+                <!-- Action Buttons - Desktop -->
                 <div class="flex items-center space-x-4">
-                    <img src="gambar/nolyxhd.png" alt="Nolyx" class="h-10 w-10">
-                    <span id="cinzel" class="text-2xl font-bold text-green-700">Nolyx</span>
-                </div>
-
-                <!-- Desktop Menu -->
-                <div class="hidden md:flex items-center space-x-8">
-
-                    <a href="#join" class="font-medium text-gray-700 hover:text-green-700 transition-colors">Join</a>
-                    <a href="#about" class="font-medium text-gray-700 hover:text-green-700 transition-colors">About</a>
-                    <a href="#governance" class="font-medium text-gray-700 hover:text-green-700 transition-colors">Governance</a>
-                    <a href="https://www.paypal.com/paypalme/nolyxxx" target="_blank" class="px-3 md:px-6 py-1.5 md:py-3 bg-yellow-500 hover:bg-yellow-600 text-white rounded-md md:rounded-lg transition-colors duration-300 flex items-center justify-center">
-                        <span class="text-xs md:text-base">Donate</span>
+                    <a href="https://www.paypal.com/paypalme/nolyxxx" target="_blank" 
+                       class="px-4 py-2 bg-yellow-500 hover:bg-yellow-600 text-white font-medium rounded-lg 
+                              transition-colors duration-300 flex items-center justify-center">
+                        Donate
                     </a>
-                    
-                    <div class="relative">
-                        <a href="" class="text-gray-700 hover:text-green-700">
-                        
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Mobile Menu Button -->
-                <div class="md:hidden flex items-center">
-                    <button class="mobile-menu-button text-gray-700 p-2" >
-                        <i class="fas fa-bars text-xl"></i>
-                    </button>
+                    <a href="class1.html" target="_blank" 
+                       class="px-4 py-2 bg-blue-800 hover:bg-blue-900 text-white font-medium rounded-lg 
+                              transition-colors duration-300 flex items-center justify-center">
+                        Market
+                    </a>
                 </div>
             </div>
+
+            <!-- Mobile Menu Button -->
+            <div class="md:hidden flex items-center">
+                <button class="mobile-menu-button text-gray-700 p-2">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
         </div>
+    </div>
 
-        <!-- Enhanced Mobile Menu -->
-        <div class="mobile-menu hidden md:hidden bg-white border-t" >
-            <div class="px-4 py-2 space-y-3">
-
-                <a href="#join" class="block py-2 text-gray-700 hover:text-green-700">Join</a>
-                <a href="#about" class="block py-2 text-gray-700 hover:text-green-700">About</a>
-                <a href="#governance" class="block py-2 text-gray-700 hover:text-green-700">Governance</a>
-                <a href="https://www.paypal.com/paypalme/nolyxxx" target="_blank" class="px-3 md:px-6 py-1.5 md:py-3 bg-yellow-500 hover:bg-yellow-600 text-white rounded-md md:rounded-lg transition-colors duration-300 flex items-center justify-center">
-                    <span class="text-xs md:text-base">Donate</span>
+    <!-- Mobile Menu -->
+    <div class="mobile-menu hidden md:hidden bg-white border-t">
+        <div class="px-4 py-2 space-y-3">
+            <a href="#join" class="block py-2 text-gray-700 hover:text-green-700">Join</a>
+            <a href="#about" class="block py-2 text-gray-700 hover:text-green-700">About</a>
+            <a href="#governance" class="block py-2 text-gray-700 hover:text-green-700">Governance</a>
+            
+            <!-- Action Buttons - Mobile -->
+            <div class="flex flex-col space-y-3 my-3">
+                <a href="https://www.paypal.com/paypalme/nolyxxx" target="_blank" 
+                   class="block py-2 px-4 bg-yellow-500 hover:bg-yellow-600 text-white font-medium rounded-lg 
+                          text-center transition-colors duration-300">
+                    Donate
                 </a>
-                <div class="py-2">
-                    <a href="" class="flex items-center text-gray-700">
-                    
-                    </a>
-                </div>
+                <a href="class1.html" target="_blank" 
+                   class="block py-2 px-4 bg-blue-800 hover:bg-blue-900 text-white font-medium rounded-lg 
+                          text-center transition-colors duration-300">
+                    Market
+                </a>
             </div>
         </div>
-    </nav>
+    </div>
+</nav>
     <section id="p" class="hero-section h-96 flex items-center justify-center text-white mt-16">
         <div class="text-center">
             <h1 id="cinzel" class="text-4xl md:text-6xl font-bold mb-4 animate-b">Nolyx Society</h1>

@@ -23,23 +23,10 @@ body {
 }
 
 /* Desktop Navigation */
-.desktop-nav {
-    position: fixed;
-    top: 0;
-    right: 0;
-    width: 50px;
-    background: rgba(10, 10, 30, 0.6);
-    backdrop-filter: blur(8px);
-    border-left: 1px solid rgba(59, 130, 246, 0.3);
-    border-bottom: 1px solid rgba(59, 130, 246, 0.3);
-    box-shadow: -5px 5px 15px rgba(0, 0, 0, 0.3);
-    padding: 0.75rem;
-    transition: all 0.3s ease;
-    border-radius: 12px 0 0 12px;
-}
+
 
 /* Mobile Navigation */
-.mobile-nav {
+.m-nav {
     position: fixed;
     bottom: 10px;
     left: 50%;
@@ -55,8 +42,7 @@ body {
     width: max-content;
 }
 
-/* Mobile Nav Items */
-.mobile-nav .nav-item {
+.nav-item {
     width: 40px;
     height: 40px;
     display: flex;
@@ -68,23 +54,16 @@ body {
     transition: all 0.3s ease;
 }
 
-.mobile-nav .nav-item:hover {
+.nav-item:hover {
     transform: scale(1.1);
     background: rgba(37, 99, 235, 0.8);
 }
 
-/* Icon Style */
 .nav-item i {
     font-size: 1.2rem;
     color: white;
 }
 
-/* Hide Desktop Navigation on Mobile */
-@media (max-width: 768px) {
-    .desktop-nav {
-        display: none;
-    }
-}
 
 
 .video-section {

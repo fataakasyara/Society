@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+    <link rel="stylesheet" href="style2.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <title>Nolyx Blue Nation</title>
+
+</head>
+<body>
+    <!-- Background Video -->
+    <video autoplay muted loop id="bg-video" style="object-fit: cover; object-position: center; width: 100vw; height: 100vh;">
+        <source src="https://github.com/fataakasyara/Society/releases/download/video/0316.mp4" type="video/mp4">
+    </video>
+    
+    <!-- Navigation Menu (Right Side) -->
+<!-- Navigation Bar -->
+<nav class="fixed top-0 right-0 mr-6 mt-6 flex flex-col items-end bg-opacity-50 rounded-lg p-2 z-50">
+    <span class="text-white text-center cyber-text mb-2">Navigation</span>
+    <a href="index.html" class="nav-item text-white hover:text-blue-500">
+        <i class="fas fa-home"></i>
+    </a>
+    <a href="#about" class="nav-item text-white hover:text-blue-500">
+    <i class="fas fa-info-circle"></i>
+    </a>
+    <a href="#event" class="nav-item text-white hover:text-blue-500">
+        <i class="fas fa-ticket-alt"></i>
+    </a>
+    <a href="#volunteer" class="nav-item text-white hover:text-blue-500">
+        <i class="fas fa-hands-helping"></i>
+    </a>
+    <a href="#" class="nav-item text-white hover:text-blue-500">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</nav>
+
+<!-- Full-Screen Video Section -->
+<section class="video-section">
+    <!-- Nolyx Society Text (Bottom Center) -->
+    <div class="absolute bottom-16 left-0 right-0 text-center">
+        <h1 class="cyber-text text-3xl text-blue-400 glow-text tracking-widest">WELCOME TO BLUE NATION</h1>
+    </div>
+    
+    <!-- Scroll Down Indicator -->
+    <div class="scroll-indicator" id="scrollDown">
+        <div class="flex flex-col items-center">
+            <span class="text-sm mb-2">Scroll for Content</span>
+            <i class="fas fa-chevron-down text-xl"></i>
+        </div>
+    </div>
+</section>
+
+<!-- About Section -->
+<section id="about" class="content-section">
+    <div class="container mx-auto px-4 py-12">
+        <div class="max-w-4xl mx-auto">
+            
+            <div class="cyber-frame rounded-lg p-6 relative bg-opacity-30 bg-black">
+                <div class="corner corner-tl"></div>
+                <div class="corner corner-tr"></div>
+                <div class="corner corner-bl"></div>
+                <div class="corner corner-br"></div>
+                
+                <h2 class="cyber-text text-2xl text-blue-400 mb-4">ABOUT</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                    <div class="info-box p-4 rounded-lg">
+                        <div class="text-xs text-gray-400 mb-1">OUR MISSION</div>
+                        <div class="text-xl font-bold text-white">Build the future</div>
+                    </div>
+                    <div class="info-box p-4 rounded-lg">
+                        <div class="text-xs text-gray-400 mb-1">FOUNDED</div>
+                        <div class="text-xl font-bold text-white">2025</div>
+                    </div>
+                    <div class="info-box p-4 rounded-lg">
+                        <div class="text-xs text-gray-400 mb-1">COMMUNITY</div>
+                        <div class="text-xl font-bold text-white">Indonesia</div>
+                    </div>
+                </div>
+                
+                <div class="info-box p-4 rounded-lg">
+                    <h3 class="text-blue-300 cyber-text mb-2">WHO WE ARE</h3>
+                    <div class="grid grid-cols-1 gap-2 text-sm">
+                        <p class="text-white">Blue Nation is a community of innovators, builders, and visionaries united by our passion for blockchain technology and decentralized systems. We believe in creating a more equitable digital future through collaboration and shared knowledge.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Event Section -->
+<section id="event" class="content-section">
+    <div class="container mx-auto px-4 py-12">
+        <div class="max-w-4xl mx-auto">
+            
+            <div class="cyber-frame rounded-lg p-6 relative bg-opacity-30 bg-black">
+                <div class="corner corner-tl"></div>
+                <div class="corner corner-tr"></div>
+                <div class="corner corner-bl"></div>
+                <div class="corner corner-br"></div>
+                
+                <h2 class="cyber-text text-2xl text-blue-400 mb-4">UPCOMING EVENTS</h2>
+                <div class="grid grid-cols-1 gap-4 mb-6">
+                    <div class="info-box p-4 rounded-lg">
+                        <div class="text-xs text-gray-400 mb-1">HACKATHON</div>
+                        <div class="text-xl font-bold text-white">Blue Nation Dev Con</div>
+                        <div class="text-sm text-gray-300 mt-2">April 15-17, 2025</div>
+                        <div class="text-sm text-gray-300">Virtual & In-Person</div>
+                    </div>
+                    <div class="info-box p-4 rounded-lg">
+                        <div class="text-xs text-gray-400 mb-1">WORKSHOP</div>
+                        <div class="text-xl font-bold text-white">Web3 Basics Workshop</div>
+                        <div class="text-sm text-gray-300 mt-2">March 25, 2025</div>
+                        <div class="text-sm text-gray-300">Online</div>
+                    </div>
+                </div>
+                
+                <div class="info-box p-4 rounded-lg">
+                    <h3 class="text-blue-300 cyber-text mb-2">EVENT REGISTRATION</h3>
+                    <div class="grid grid-cols-1 gap-2 text-sm">
+                        <p class="text-white">Registration for all events is open to community members. Join our Discord to get access to exclusive registration links and early bird discounts.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Volunteer Section -->
+<section id="volunteer" class="content-section">
+    <div class="container mx-auto px-4 py-12">
+        <div class="max-w-4xl mx-auto">
+            
+            <div class="cyber-frame rounded-lg p-6 relative bg-opacity-30 bg-black">
+                <div class="corner corner-tl"></div>
+                <div class="corner corner-tr"></div>
+                <div class="corner corner-bl"></div>
+                <div class="corner corner-br"></div>
+                
+                <h2 class="cyber-text text-2xl text-blue-400 mb-4">VOLUNTEER WITH US</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                    <div class="info-box p-4 rounded-lg">
+                        <div class="text-xs text-gray-400 mb-1">MODERATOR</div>
+                        <div class="text-xl font-bold text-white">Become a Event Moderator</div>
+                    </div>
+                    <div class="info-box p-4 rounded-lg">
+                        <div class="text-xs text-gray-400 mb-1">SPEAKER</div>
+                        <div class="text-xl font-bold text-white">Become a Event Speaker</div>
+                    </div>
+                </div>
+                
+                <div class="info-box p-4 rounded-lg">
+                    <h3 class="text-blue-300 cyber-text mb-2">GET INVOLVED</h3>
+                    <div class="grid grid-cols-1 gap-2 text-sm">
+                        <p class="text-white">Blue Nation thrives thanks to our dedicated volunteers. Whether you're a developer, designer, writer, or community organizer, there's a place for you in our ecosystem. Fill out the form below to join our volunteer network and contribute to building the future of Web3.</p>
+                        <div class="mt-4">
+                            <button class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded cyber-button">Apply Now</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Scroll down button functionality
+            document.getElementById('scrollDown').addEventListener('click', function() {
+                window.scrollTo({
+                    top: window.innerHeight,
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+
+
+        const socket = new WebSocket("wss://stream.binance.com:9443/ws/!miniTicker@arr");
+
+socket.onmessage = (event) => {
+    const data = JSON.parse(event.data);
+    const btc = data.find(item => item.s === "BTCUSDT");
+    const eth = data.find(item => item.s === "ETHUSDT");
+
+    if (btc) document.getElementById("btc-price").innerText = `$${parseFloat(btc.c).toFixed(2)}`;
+    if (eth) document.getElementById("eth-price").innerText = `$${parseFloat(eth.c).toFixed(2)}`;
+};
+
+    </script>
+</body>
+</html> 
+
+
+

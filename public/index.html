@@ -87,6 +87,8 @@
                 <a href="#join" class="font-medium text-gray-700 hover:text-green-700 transition-colors">Join</a>
                 <a href="#about" class="font-medium text-gray-700 hover:text-green-700 transition-colors">About</a>
                 <a href="#governance" class="font-medium text-gray-700 hover:text-green-700 transition-colors">Governance</a>
+                <button id="connect" class="font-medium text-gray-700 hover:text-green-700 transition-colors">Connect Wallet</button>
+                <p id="address" class="text-sm text-gray-600">not connected</p>
             </div>
 
             <!-- Mobile Menu Button -->
@@ -104,6 +106,8 @@
             <a href="#join" class="block py-2 text-gray-700 hover:text-green-700">Join</a>
             <a href="#about" class="block py-2 text-gray-700 hover:text-green-700">About</a>
             <a href="#governance" class="block py-2 text-gray-700 hover:text-green-700">Governance</a>
+            <button id="connect" class="block text-left py-2 text-gray-700 hover:text-green-700">Connect Wallet</button>
+            <p id="address" class="text-sm text-gray-600">not connected</p>
         </div>
     </div>
 </nav>
@@ -572,6 +576,33 @@ setTimeout(() => {
  
 </script>
 
+
+    <script>
+        const connectBtn = document.getElementById('connect');
+        const addressDisplay = document.getElementById('address');
+
+        connectBtn.addEventListener('click', async () => {
+        if (!window.ethereum) {
+            alert("Please install MetaMask.");
+            return;
+        }
+
+        try {
+            // Minta akses akun dari MetaMask
+            const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+            const address = accounts[0];
+
+            // Optional: buat provider dari ethers
+            const provider = new ethers.BrowserProvider(window.ethereum);
+
+            addressDisplay.textContent = `Connected: ${address}`;
+        } catch (err) {
+            console.error(err);
+            addressDisplay.textContent = "Connection failed.";
+        }
+        });
+    </script>
+<script src="https://cdn.jsdelivr.net/npm/ethers@6.8.1/dist/ethers.umd.min.js"></script>
 </body>
 </html>
 

@@ -106,8 +106,8 @@
             <a href="#join" class="block py-2 text-gray-700 hover:text-green-700">Join</a>
             <a href="#about" class="block py-2 text-gray-700 hover:text-green-700">About</a>
             <a href="#governance" class="block py-2 text-gray-700 hover:text-green-700">Governance</a>
-            <button id="connect" class="block text-left py-2 text-gray-700 hover:text-green-700">Connect Wallet</button>
-            <p id="address" class="text-sm text-gray-600">not connected</p>
+            <button id="connect2" class="block text-left py-2 text-gray-700 hover:text-green-700">Connect Wallet</button>
+            <p id="address2" class="text-sm text-gray-600">not connected</p>
         </div>
     </div>
 </nav>
@@ -581,6 +581,8 @@ setTimeout(() => {
         const connectBtn = document.getElementById('connect');
         const addressDisplay = document.getElementById('address');
 
+
+
         connectBtn.addEventListener('click', async () => {
         if (!window.ethereum) {
             alert("Please install MetaMask.");
@@ -599,6 +601,33 @@ setTimeout(() => {
         } catch (err) {
             console.error(err);
             addressDisplay.textContent = "Connection failed.";
+        }
+        });
+    </script>
+        <script>
+        const connectBtn2 = document.getElementById('connect2');
+        const addressDisplay2 = document.getElementById('address2');
+
+
+
+        connectBtn2.addEventListener('click', async () => {
+        if (!window.ethereum) {
+            alert("Please install MetaMask.");
+            return;
+        }
+
+        try {
+            // Minta akses akun dari MetaMask
+            const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+            const address = accounts[0];
+
+            // Optional: buat provider dari ethers
+            const provider = new ethers.BrowserProvider(window.ethereum);
+
+            addressDisplay2.textContent = `Connected: ${address}`;
+        } catch (err) {
+            console.error(err);
+            addressDisplay2.textContent = "Connection failed.";
         }
         });
     </script>

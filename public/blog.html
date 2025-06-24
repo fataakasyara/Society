@@ -94,6 +94,48 @@
                 <!-- Blog Content Section -->
                 <section class="py-20 bg-white">
                     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <!-- Search Section -->
+                        <section class="sticky top-16 z-20 bg-white shadow-lg mb-8 rounded-lg">
+                            <div class="bg-white p-4 rounded-lg">
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    <!-- Search by name -->
+                                    <div class="relative">
+                                        <label for="searchName" class="block text-sm font-medium text-gray-700 mb-1">Search Articles:</label>
+                                        <input
+                                            type="text"
+                                            id="searchName"
+                                            class="w-full p-3 border border-gray-300 rounded-lg focus:ring-green-500 focus:border-green-500 transition-colors"
+                                            placeholder="Search by title or content..."
+                                        >
+                                        <div class="absolute inset-y-0 right-0 top-6 pr-3 flex items-center pointer-events-none">
+                                            <i class="fas fa-search text-gray-400"></i>
+                                        </div>
+                                    </div>
+
+                                    <!-- Search by category -->
+                                    <div class="relative">
+                                        <label for="searchCategory" class="block text-sm font-medium text-gray-700 mb-1">Filter by Category:</label>
+                                        <select
+                                            id="searchCategory"
+                                            class="w-full p-3 border border-gray-300 rounded-lg focus:ring-green-500 focus:border-green-500 transition-colors"
+                                        >
+                                            <option value="all">All Categories</option>
+                                            <option value="web3">Web3</option>
+                                            <option value="blockchain">Blockchain</option>
+                                            <option value="defi">DeFi</option>
+                                            <option value="smartcontracts">Smart Contracts</option>
+                                            <option value="tutorials">Tutorials</option>
+                                            <option value="nft">NFT</option>
+                                            <option value="dao">DAO</option>
+                                        </select>
+                                        <div class="absolute inset-y-0 right-0 top-6 pr-3 flex items-center pointer-events-none">
+                                            <i class="fas fa-chevron-down text-gray-400"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
                         <!-- Categories -->
                         <div class="text-center mb-16">
                             <h2 class="animate-title text-3xl md:text-4xl font-bold text-gray-800 mb-8">
@@ -111,6 +153,9 @@
                                 </button>
                                 <button class="category-btn bg-gray-200 text-gray-700 px-6 py-3 rounded-full font-semibold transition-all duration-300 hover:bg-green-600 hover:text-white" data-category="defi">
                                     DeFi
+                                </button>
+                                <button class="category-btn bg-gray-200 text-gray-700 px-6 py-3 rounded-full font-semibold transition-all duration-300 hover:bg-green-600 hover:text-white" data-category="smartcontracts">
+                                    Smart Contracts
                                 </button>
                                 <button class="category-btn bg-gray-200 text-gray-700 px-6 py-3 rounded-full font-semibold transition-all duration-300 hover:bg-green-600 hover:text-white" data-category="tutorials">
                                     Tutorials
@@ -143,10 +188,13 @@
                 this.currentCategory = 'all';
                 this.postsPerPage = 6;
                 this.currentPage = 1;
+                this.searchQuery = '';
+                this.allPosts = [];
                 this.init();
             }
 
             init() {
+                this.allPosts = this.generateSamplePosts();
                 this.checkWalletConnection();
                 this.setupEventListeners();
                 this.loadBlogPosts();
@@ -202,11 +250,26 @@
                     }
                 });
 
+                // Search input
+                document.getElementById('searchName').addEventListener('input', (e) => {
+                    this.searchQuery = e.target.value.toLowerCase();
+                    this.currentPage = 1;
+                    this.loadBlogPosts();
+                });
+
+                // Category dropdown
+                document.getElementById('searchCategory').addEventListener('change', (e) => {
+                    this.switchCategory(e.target.value);
+                    this.updateCategoryButtons(document.querySelector(`[data-category="${e.target.value}"]`));
+                });
+
                 // Category buttons
                 document.querySelectorAll('.category-btn').forEach(btn => {
                     btn.addEventListener('click', (e) => {
                         this.switchCategory(e.target.dataset.category);
                         this.updateCategoryButtons(e.target);
+                        // Update dropdown to match
+                        document.getElementById('searchCategory').value = e.target.dataset.category;
                     });
                 });
 
@@ -232,11 +295,35 @@
             }
 
             loadBlogPosts() {
-                // Simulate blog posts data
-                const posts = this.generateSamplePosts();
-                const filteredPosts = this.currentCategory === 'all' ? posts : posts.filter(post => post.category === this.currentCategory);
-                
-                this.renderPosts(filteredPosts.slice(0, this.postsPerPage * this.currentPage));
+                let filteredPosts = this.allPosts;
+
+                // Filter by category
+                if (this.currentCategory !== 'all') {
+                    filteredPosts = filteredPosts.filter(post => post.category === this.currentCategory);
+                }
+
+                // Filter by search query
+                if (this.searchQuery) {
+                    filteredPosts = filteredPosts.filter(post =>
+                        post.title.toLowerCase().includes(this.searchQuery) ||
+                        post.excerpt.toLowerCase().includes(this.searchQuery) ||
+                        post.category.toLowerCase().includes(this.searchQuery)
+                    );
+                }
+
+                const postsToShow = filteredPosts.slice(0, this.postsPerPage * this.currentPage);
+                this.renderPosts(postsToShow);
+
+                // Update load more button visibility
+                const loadMoreBtn = document.getElementById('loadMoreBtn');
+                if (filteredPosts.length <= this.postsPerPage * this.currentPage) {
+                    loadMoreBtn.style.display = 'none';
+                } else {
+                    loadMoreBtn.style.display = 'block';
+                }
+
+                // Show no results message if needed
+                this.showNoResultsMessage(postsToShow.length === 0);
             }
 
             loadMorePosts() {
@@ -259,7 +346,7 @@
                         id: 2,
                         title: "Smart Contracts: Building the Foundation of DeFi",
                         excerpt: "Learn how smart contracts are powering the decentralized finance revolution and creating new financial opportunities.",
-                        category: "defi",
+                        category: "smartcontracts",
                         date: "2025-01-12",
                         readTime: "7 min read",
                         image: "https://images.unsplash.com/photo-1621761191319-c6fb62004040?w=400&h=250&fit=crop"
@@ -272,6 +359,60 @@
                         date: "2025-01-10",
                         readTime: "6 min read",
                         image: "https://images.unsplash.com/photo-1639762681057-408e52192e55?w=400&h=250&fit=crop"
+                    },
+                    {
+                        id: 4,
+                        title: "DeFi Protocols: Yield Farming and Liquidity Mining",
+                        excerpt: "Discover the world of decentralized finance protocols and learn how to maximize your crypto earnings through yield farming.",
+                        category: "defi",
+                        date: "2025-01-08",
+                        readTime: "8 min read",
+                        image: "https://images.unsplash.com/photo-1640340434855-6084b1f4901c?w=400&h=250&fit=crop"
+                    },
+                    {
+                        id: 5,
+                        title: "NFT Marketplace Development Tutorial",
+                        excerpt: "Step-by-step guide to building your own NFT marketplace using Solidity, React, and IPFS for decentralized storage.",
+                        category: "tutorials",
+                        date: "2025-01-05",
+                        readTime: "12 min read",
+                        image: "https://images.unsplash.com/photo-1640826844110-c162e4dda4b8?w=400&h=250&fit=crop"
+                    },
+                    {
+                        id: 6,
+                        title: "DAO Governance: The Future of Decentralized Organizations",
+                        excerpt: "Understand how Decentralized Autonomous Organizations are reshaping corporate governance and community decision-making.",
+                        category: "dao",
+                        date: "2025-01-03",
+                        readTime: "9 min read",
+                        image: "https://images.unsplash.com/photo-1559526324-4b87b5e36e44?w=400&h=250&fit=crop"
+                    },
+                    {
+                        id: 7,
+                        title: "Ethereum 2.0: Proof of Stake and Scalability",
+                        excerpt: "Deep dive into Ethereum's transition to Proof of Stake and how it addresses scalability challenges in blockchain networks.",
+                        category: "blockchain",
+                        date: "2025-01-01",
+                        readTime: "10 min read",
+                        image: "https://images.unsplash.com/photo-1621761191319-c6fb62004040?w=400&h=250&fit=crop"
+                    },
+                    {
+                        id: 8,
+                        title: "Building Your First dApp: Complete Guide",
+                        excerpt: "Learn to build decentralized applications from scratch using modern Web3 technologies and best practices.",
+                        category: "tutorials",
+                        date: "2024-12-28",
+                        readTime: "15 min read",
+                        image: "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=400&h=250&fit=crop"
+                    },
+                    {
+                        id: 9,
+                        title: "NFT Art and Digital Ownership Revolution",
+                        excerpt: "Explore how NFTs are transforming digital art ownership and creating new opportunities for artists and collectors.",
+                        category: "nft",
+                        date: "2024-12-25",
+                        readTime: "6 min read",
+                        image: "https://images.unsplash.com/photo-1640826844110-c162e4dda4b8?w=400&h=250&fit=crop"
                     }
                 ];
             }
@@ -283,7 +424,7 @@
                         <div class="relative">
                             <img src="${post.image}" alt="${post.title}" class="w-full h-48 object-cover">
                             <div class="absolute top-4 left-4">
-                                <span class="bg-green-600 text-white px-3 py-1 rounded-full text-sm font-semibold capitalize">${post.category}</span>
+                                <span class="bg-green-600 text-white px-3 py-1 rounded-full text-sm font-semibold capitalize">${this.formatCategoryName(post.category)}</span>
                             </div>
                         </div>
                         <div class="p-6">
@@ -304,11 +445,46 @@
                     </article>
                 `).join('');
             }
+
+            formatCategoryName(category) {
+                const categoryNames = {
+                    'web3': 'Web3',
+                    'blockchain': 'Blockchain',
+                    'defi': 'DeFi',
+                    'smartcontracts': 'Smart Contracts',
+                    'tutorials': 'Tutorials',
+                    'nft': 'NFT',
+                    'dao': 'DAO'
+                };
+                return categoryNames[category] || category;
+            }
+
+            showNoResultsMessage(show) {
+                const container = document.getElementById('blogPosts');
+                if (show) {
+                    container.innerHTML = `
+                        <div class="col-span-full text-center py-16">
+                            <div class="max-w-md mx-auto">
+                                <i class="fas fa-search text-6xl text-gray-300 mb-6"></i>
+                                <h3 class="text-2xl font-bold text-gray-600 mb-4">No Articles Found</h3>
+                                <p class="text-gray-500 mb-6">
+                                    We couldn't find any articles matching your search criteria.
+                                    Try adjusting your search terms or browse all categories.
+                                </p>
+                                <button onclick="document.getElementById('searchName').value = ''; document.getElementById('searchCategory').value = 'all'; window.blogManager.searchQuery = ''; window.blogManager.switchCategory('all');"
+                                        class="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-lg transition-colors">
+                                    Clear Search
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                }
+            }
         }
 
         // Initialize blog when DOM is loaded
         document.addEventListener('DOMContentLoaded', () => {
-            new BlogManager();
+            window.blogManager = new BlogManager();
         });
 
         // Animation Script (same as other pages)

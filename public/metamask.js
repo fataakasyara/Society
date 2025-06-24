@@ -169,7 +169,7 @@ class MetaMaskConnector {
                 title: this.getAlertTitle(type),
                 text: message,
                 icon: type,
-                timer: 3000,
+                timer: 4000,
                 showConfirmButton: true,
                 confirmButtonText: 'OK',
                 confirmButtonColor: '#10b981',
@@ -178,11 +178,22 @@ class MetaMaskConnector {
                 backdrop: true,
                 allowOutsideClick: true,
                 allowEscapeKey: true,
+                showClass: {
+                    popup: 'swal2-show',
+                    backdrop: 'swal2-backdrop-show',
+                    icon: 'swal2-icon-show'
+                },
+                hideClass: {
+                    popup: 'swal2-hide',
+                    backdrop: 'swal2-backdrop-hide',
+                    icon: 'swal2-icon-hide'
+                },
                 customClass: {
                     popup: 'metamask-alert-popup',
                     title: 'metamask-alert-title',
                     content: 'metamask-alert-content',
-                    confirmButton: 'metamask-alert-button'
+                    confirmButton: 'metamask-alert-button',
+                    icon: 'metamask-alert-icon'
                 }
             };
 
@@ -305,6 +316,7 @@ class MetaMaskConnector {
             /* Success alert styling */
             .swal2-success .swal2-icon {
                 border-color: #10b981 !important;
+                color: #10b981 !important;
             }
 
             .swal2-success .swal2-success-ring {
@@ -316,6 +328,28 @@ class MetaMaskConnector {
             }
 
             .swal2-success [class^='swal2-success-line'] {
+                background-color: #10b981 !important;
+            }
+
+            .swal2-success .swal2-success-line-tip {
+                background-color: #10b981 !important;
+            }
+
+            .swal2-success .swal2-success-line-long {
+                background-color: #10b981 !important;
+            }
+
+            /* Fix success checkmark animation */
+            .swal2-success::before,
+            .swal2-success::after {
+                background: #10b981 !important;
+            }
+
+            .swal2-success .swal2-success-circular-line-left {
+                background-color: #10b981 !important;
+            }
+
+            .swal2-success .swal2-success-circular-line-right {
                 background-color: #10b981 !important;
             }
 
@@ -344,6 +378,95 @@ class MetaMaskConnector {
             .swal2-backdrop-show {
                 background: rgba(0, 0, 0, 0.4) !important;
                 backdrop-filter: blur(4px) !important;
+            }
+
+            /* Icon styling improvements */
+            .metamask-alert-icon {
+                border: 3px solid #10b981 !important;
+            }
+
+            /* Success icon specific fixes */
+            .swal2-success .swal2-icon::before {
+                background-color: #10b981 !important;
+            }
+
+            .swal2-success .swal2-icon::after {
+                background-color: #10b981 !important;
+            }
+
+            /* Ensure success checkmark is visible and animated */
+            .swal2-success .swal2-success-line {
+                background-color: #10b981 !important;
+                height: 5px !important;
+                border-radius: 2px !important;
+            }
+
+            .swal2-success .swal2-success-line.swal2-success-line-tip {
+                left: 28px !important;
+                top: 46px !important;
+                width: 25px !important;
+                transform: rotate(45deg) !important;
+                animation: swal2-animate-success-line-tip 0.75s !important;
+            }
+
+            .swal2-success .swal2-success-line.swal2-success-line-long {
+                right: 8px !important;
+                top: 38px !important;
+                width: 47px !important;
+                transform: rotate(-45deg) !important;
+                animation: swal2-animate-success-line-long 0.75s !important;
+            }
+
+            /* Success checkmark animation keyframes */
+            @keyframes swal2-animate-success-line-tip {
+                0% {
+                    width: 0;
+                    left: 1px;
+                    top: 19px;
+                }
+                54% {
+                    width: 0;
+                    left: 1px;
+                    top: 19px;
+                }
+                70% {
+                    width: 50px;
+                    left: -8px;
+                    top: 37px;
+                }
+                84% {
+                    width: 17px;
+                    left: 21px;
+                    top: 48px;
+                }
+                100% {
+                    width: 25px;
+                    left: 14px;
+                    top: 45px;
+                }
+            }
+
+            @keyframes swal2-animate-success-line-long {
+                0% {
+                    width: 0;
+                    right: 46px;
+                    top: 54px;
+                }
+                65% {
+                    width: 0;
+                    right: 46px;
+                    top: 54px;
+                }
+                84% {
+                    width: 55px;
+                    right: 0px;
+                    top: 35px;
+                }
+                100% {
+                    width: 47px;
+                    right: 8px;
+                    top: 38px;
+                }
             }
 
             /* Animation improvements */

@@ -676,10 +676,14 @@ setTimeout(() => {
 
 
     <script>
+        // Function to truncate Ethereum address
+        function truncateAddress(address) {
+            if (!address) return '';
+            return `${address.slice(0, 6)}...${address.slice(-4)}`;
+        }
+
         const connectBtn = document.getElementById('connect');
         const addressDisplay = document.getElementById('address');
-
-
 
         connectBtn.addEventListener('click', async () => {
         if (!window.ethereum) {
@@ -695,7 +699,10 @@ setTimeout(() => {
             // Optional: buat provider dari ethers
             const provider = new ethers.BrowserProvider(window.ethereum);
 
-            addressDisplay.textContent = `Connected: ${address}`;
+            // Display truncated address
+            const truncatedAddress = truncateAddress(address);
+            addressDisplay.textContent = `Connected: ${truncatedAddress}`;
+            addressDisplay.title = address; // Show full address on hover
         } catch (err) {
             console.error(err);
             addressDisplay.textContent = "Connection failed.";
@@ -705,8 +712,6 @@ setTimeout(() => {
         <script>
         const connectBtn2 = document.getElementById('connect2');
         const addressDisplay2 = document.getElementById('address2');
-
-
 
         connectBtn2.addEventListener('click', async () => {
         if (!window.ethereum) {
@@ -722,7 +727,10 @@ setTimeout(() => {
             // Optional: buat provider dari ethers
             const provider = new ethers.BrowserProvider(window.ethereum);
 
-            addressDisplay2.textContent = `Connected: ${address}`;
+            // Display truncated address (reuse the function from above)
+            const truncatedAddress = truncateAddress(address);
+            addressDisplay2.textContent = `Connected: ${truncatedAddress}`;
+            addressDisplay2.title = address; // Show full address on hover
         } catch (err) {
             console.error(err);
             addressDisplay2.textContent = "Connection failed.";

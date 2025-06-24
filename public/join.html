@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join Nolyx Society - Community Platforms</title>
+    <meta name="description" content="Join the Nolyx Society community through WhatsApp, Telegram, or Discord. Connect with fellow technology enthusiasts and learn about Web 3.0 together.">
+    <meta name="keywords" content="Nolyx Society, community, WhatsApp, Telegram, Discord, Web3, blockchain, technology">
+
+    <!-- Open Graph / Social Media Meta Tags -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://nolyx.sytes.net/join.html">
+    <meta property="og:title" content="Join Nolyx Society - Community Platforms">
+    <meta property="og:description" content="Join the Nolyx Society community through WhatsApp, Telegram, or Discord.">
+    <meta property="og:image" content="https://your-domain.com/path/to/nolyx-social-image.jpg">
+
+    <link rel="icon" href="gambar/nolyxnew.png">
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-gradient-to-r from-green-400 to-green-600 bg-size-200 bg-pos-0 animation" style="background-size: 200% 200%; background-position: 0% 0%; animation: gradient 2s ease infinite;
+    @keyframes gradient {
+        0% {
+            background-position: 0% 0%;
+        }
+        50% {
+            background-position: 100% 0%;
+        }
+        100% {
+            background-position: 0% 0%;
+        }
+    }">
+<nav class="fixed top-0 w-full bg-white shadow-lg z-30 mt-0 mb-16">
+    <div class="max-w-7xl mx-auto px-4">
+        <div class="flex justify-between h-16">
+            <div class="flex items-center space-x-4">
+                <img src="gambar/nolyxnew.png" alt="Nolyx" class="h-10 w-10">
+                <span id="cinzel" class="text-2xl font-bold text-green-700">Nolyx</span>
+            </div>
+
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex items-center space-x-6">
+                <a href="index.html#join" class="font-medium text-gray-700 hover:text-green-700 transition-colors">Join</a>
+                <a href="index.html#about" class="font-medium text-gray-700 hover:text-green-700 transition-colors">About</a>
+                <a href="index.html#governance" class="font-medium text-gray-700 hover:text-green-700 transition-colors">Governance</a>
+                <button id="connect" class="font-medium text-gray-700 hover:text-green-700 transition-colors">Connect Metamask</button>
+                <p id="address" class="text-sm text-gray-600">not connected</p>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <div class="md:hidden flex items-center">
+                <button class="mobile-menu-button text-gray-700 p-2">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu hidden md:hidden bg-white border-t">
+        <div class="px-4 py-2 space-y-3">
+            <a href="index.html#join" class="block py-2 text-gray-700 hover:text-green-700">Join</a>
+            <a href="index.html#about" class="block py-2 text-gray-700 hover:text-green-700">About</a>
+            <a href="index.html#governance" class="block py-2 text-gray-700 hover:text-green-700">Governance</a>
+            <button id="connect2" class="block text-left py-2 text-gray-700 hover:text-green-700">Connect Metamask</button>
+            <p id="address2" class="text-sm text-gray-600">not connected</p>
+        </div>
+    </div>
+</nav>
+
+
+
+        <!-- Platform Selection -->
+        <section class="py-20 bg-white min-h-screen">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+
+                <!-- Platform Cards -->
+                <div class="pt-12 grid grid-cols-1 md:grid-cols-3 gap-8 justify-center items-center">
+                    <!-- WhatsApp Card -->
+                    <div class="animate-card bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100">
+                        <div class="bg-gradient-to-br from-green-500 to-green-600 p-8 text-center">
+                            <div class="bg-white bg-opacity-20 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <i class="fab fa-whatsapp text-4xl text-white"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold text-white mb-2">WhatsApp</h3>
+                            <p class="text-green-100">Instant messaging & voice calls</p>
+                        </div>
+                        <div class="p-8">
+                            <ul class="space-y-3 mb-8">
+                                <li class="flex items-center text-gray-600">
+                                    <i class="fas fa-check text-green-500 mr-3"></i>
+                                    Real-time discussions
+                                </li>
+                                <li class="flex items-center text-gray-600">
+                                    <i class="fas fa-check text-green-500 mr-3"></i>
+                                    Voice messages
+                                </li>
+                                <li class="flex items-center text-gray-600">
+                                    <i class="fas fa-check text-green-500 mr-3"></i>
+                                    File sharing
+                                </li>
+                                <li class="flex items-center text-gray-600">
+                                    <i class="fas fa-check text-green-500 mr-3"></i>
+                                    Mobile-first experience
+                                </li>
+                            </ul>
+                            <a href="https://chat.whatsapp.com/COlHSaFaFUiCBegugNfufA" 
+                               target="_blank" 
+                               class="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-4 px-6 rounded-xl transition-all duration-300 flex items-center justify-center group">
+                                <i class="fab fa-whatsapp mr-2 text-xl"></i>
+                                Join WhatsApp Group
+                                <i class="fas fa-external-link-alt ml-2 text-sm group-hover:translate-x-1 transition-transform"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Telegram Card -->
+                    <div class="animate-card bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100">
+                        <div class="bg-gradient-to-br from-blue-500 to-blue-600 p-8 text-center">
+                            <div class="bg-white bg-opacity-20 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <i class="fab fa-telegram text-4xl text-white"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold text-white mb-2">Telegram</h3>
+                            <p class="text-blue-100">Advanced features & bots</p>
+                        </div>
+                        <div class="p-8">
+                            <ul class="space-y-3 mb-8">
+                                <li class="flex items-center text-gray-600">
+                                    <i class="fas fa-check text-blue-500 mr-3"></i>
+                                    Advanced group features
+                                </li>
+                                <li class="flex items-center text-gray-600">
+                                    <i class="fas fa-check text-blue-500 mr-3"></i>
+                                    Bot integrations
+                                </li>
+                                <li class="flex items-center text-gray-600">
+                                    <i class="fas fa-check text-blue-500 mr-3"></i>
+                                    Large file support
+                                </li>
+                                <li class="flex items-center text-gray-600">
+                                    <i class="fas fa-check text-blue-500 mr-3"></i>
+                                    Cross-platform sync
+                                </li>
+                            </ul>
+                            <a href="#" 
+                               onclick="showComingSoon('Telegram')"
+                               class="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-4 px-6 rounded-xl transition-all duration-300 flex items-center justify-center group">
+                                <i class="fab fa-telegram mr-2 text-xl"></i>
+                                Join Telegram Group
+                                <i class="fas fa-clock ml-2 text-sm"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Discord Card -->
+                    <div class="animate-card bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100">
+                        <div class="bg-gradient-to-br from-indigo-500 to-purple-600 p-8 text-center">
+                            <div class="bg-white bg-opacity-20 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <i class="fab fa-discord text-4xl text-white"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold text-white mb-2">Discord</h3>
+                            <p class="text-indigo-100">Voice channels & communities</p>
+                        </div>
+                        <div class="p-8">
+                            <ul class="space-y-3 mb-8">
+                                <li class="flex items-center text-gray-600">
+                                    <i class="fas fa-check text-indigo-500 mr-3"></i>
+                                    Voice & video calls
+                                </li>
+                                <li class="flex items-center text-gray-600">
+                                    <i class="fas fa-check text-indigo-500 mr-3"></i>
+                                    Organized channels
+                                </li>
+                                <li class="flex items-center text-gray-600">
+                                    <i class="fas fa-check text-indigo-500 mr-3"></i>
+                                    Screen sharing
+                                </li>
+                                <li class="flex items-center text-gray-600">
+                                    <i class="fas fa-check text-indigo-500 mr-3"></i>
+                                    Gaming integration
+                                </li>
+                            </ul>
+                            <a href="#" 
+                               onclick="showComingSoon('Discord')"
+                               class="w-full bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-4 px-6 rounded-xl transition-all duration-300 flex items-center justify-center group">
+                                <i class="fab fa-discord mr-2 text-xl"></i>
+                                Join Discord Server
+                                <i class="fas fa-clock ml-2 text-sm"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+
+    <!-- Coming Soon Modal -->
+    <div id="comingSoonModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
+        <div class="bg-white p-8 rounded-2xl shadow-2xl max-w-md w-full mx-4">
+            <div class="text-center">
+                <i class="fas fa-clock text-4xl text-yellow-500 mb-4"></i>
+                <h3 class="text-2xl font-bold text-gray-800 mb-4">Coming Soon!</h3>
+                <p class="text-gray-600 mb-6">
+                    The <span id="platformName"></span> community will be available soon. 
+                    For now, join us on WhatsApp to stay connected!
+                </p>
+                <div class="flex space-x-4">
+                    <button onclick="closeComingSoon()" class="flex-1 bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-3 px-6 rounded-xl transition-colors">
+                        Close
+                    </button>
+                    <a href="https://chat.whatsapp.com/COlHSaFaFUiCBegugNfufA" 
+                       target="_blank" 
+                       class="flex-1 bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-xl transition-colors">
+                        Join WhatsApp
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        // Mobile menu toggle - using the same class as index.html
+        const button = document.querySelector('.mobile-menu-button');
+        const mobileMenu = document.querySelector('.mobile-menu');
+
+        if (button && mobileMenu) {
+            button.addEventListener('click', function() {
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            document.addEventListener('click', function(event) {
+                if (!mobileMenu.contains(event.target) && !button.contains(event.target)) {
+                    mobileMenu.classList.add('hidden');
+                }
+            });
+
+            window.addEventListener('scroll', function() {
+                mobileMenu.classList.add('hidden');
+            });
+        }
+
+        // Coming soon modal functions
+        function showComingSoon(platform) {
+            document.getElementById('platformName').textContent = platform;
+            document.getElementById('comingSoonModal').classList.remove('hidden');
+        }
+
+        function closeComingSoon() {
+            document.getElementById('comingSoonModal').classList.add('hidden');
+        }
+
+        // Close modal when clicking outside
+        document.getElementById('comingSoonModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeComingSoon();
+            }
+        });
+
+        // Animation Script
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const sectionObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const section = entry.target;
+
+                    // Animate titles first
+                    const titles = section.querySelectorAll('.animate-title');
+                    titles.forEach((title, index) => {
+                        setTimeout(() => {
+                            title.classList.add('animate');
+                        }, index * 100);
+                    });
+
+                    // Animate content blocks
+                    const contentBlocks = section.querySelectorAll('.animate-content');
+                    contentBlocks.forEach((content, index) => {
+                        setTimeout(() => {
+                            content.classList.add('animate');
+                        }, index * 200 + 200);
+                    });
+
+                    // Animate cards with sequential delay
+                    const cards = section.querySelectorAll('.animate-card');
+                    cards.forEach((card, index) => {
+                        setTimeout(() => {
+                            card.classList.add('animate');
+                        }, index * 200 + 400);
+                    });
+
+                    // Animate other elements
+                    const elements = section.querySelectorAll('.animate-element');
+                    elements.forEach((element, index) => {
+                        setTimeout(() => {
+                            element.classList.add('animate');
+                        }, index * 150 + 300);
+                    });
+
+                    // Stop observing once animated
+                    sectionObserver.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        // Start observing when DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            const sections = document.querySelectorAll('section');
+            sections.forEach(section => {
+                if (section) {
+                    sectionObserver.observe(section);
+                }
+            });
+        });
+
+        // Fallback for browsers that don't support Intersection Observer
+        if (!window.IntersectionObserver) {
+            document.addEventListener('DOMContentLoaded', () => {
+                const allAnimateElements = document.querySelectorAll(
+                    '.animate-title, .animate-content, .animate-card, .animate-element'
+                );
+
+                allAnimateElements.forEach(element => {
+                    element.classList.add('animate');
+                });
+            });
+        }
+    </script>
+
+    <!-- Include script.js for mobile menu functionality -->
+    <script src="script.js"></script>
+
+    <!-- MetaMask Connection Scripts -->
+    <script>
+        // Function to truncate Ethereum address
+        function truncateAddress(address) {
+            if (!address) return '';
+            return `${address.slice(0, 6)}...${address.slice(-4)}`;
+        }
+
+        const connectBtn = document.getElementById('connect');
+        const addressDisplay = document.getElementById('address');
+
+        connectBtn.addEventListener('click', async () => {
+        if (!window.ethereum) {
+            alert("Please install MetaMask.");
+            return;
+        }
+
+        try {
+            // Minta akses akun dari MetaMask
+            const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+            const address = accounts[0];
+
+            // Optional: buat provider dari ethers
+            const provider = new ethers.BrowserProvider(window.ethereum);
+
+            // Display truncated address
+            const truncatedAddress = truncateAddress(address);
+            addressDisplay.textContent = `Connected: ${truncatedAddress}`;
+            addressDisplay.title = address; // Show full address on hover
+        } catch (err) {
+            console.error(err);
+            addressDisplay.textContent = "Connection failed.";
+        }
+        });
+    </script>
+
+    <script>
+        const connectBtn2 = document.getElementById('connect2');
+        const addressDisplay2 = document.getElementById('address2');
+
+        connectBtn2.addEventListener('click', async () => {
+        if (!window.ethereum) {
+            alert("Please install MetaMask.");
+            return;
+        }
+
+        try {
+            // Minta akses akun dari MetaMask
+            const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+            const address = accounts[0];
+
+            // Optional: buat provider dari ethers
+            const provider = new ethers.BrowserProvider(window.ethereum);
+
+            // Display truncated address (reuse the function from above)
+            const truncatedAddress = truncateAddress(address);
+            addressDisplay2.textContent = `Connected: ${truncatedAddress}`;
+            addressDisplay2.title = address; // Show full address on hover
+        } catch (err) {
+            console.error(err);
+            addressDisplay2.textContent = "Connection failed.";
+        }
+        });
+    </script>
+
+    <!-- Ethers.js Library -->
+    <script src="https://cdn.jsdelivr.net/npm/ethers@6.8.1/dist/ethers.umd.min.js"></script>
+</body>
+</html>

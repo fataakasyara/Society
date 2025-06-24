@@ -21,6 +21,11 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="stylesheet" href="style.css">
+
+    <!-- Dynamic Navbar and MetaMask Scripts -->
+    <script src="navbar.js"></script>
+    <script src="metamask.js"></script>
+    <script src="ai-button.js"></script>
 </head>
 <body class="bg-gradient-to-r from-green-400 to-green-600 bg-size-200 bg-pos-0 animation" style="background-size: 200% 200%; background-position: 0% 0%; animation: gradient 2s ease infinite;
     @keyframes gradient {
@@ -34,43 +39,8 @@
             background-position: 0% 0%;
         }
     }">
-<nav class="fixed top-0 w-full bg-white shadow-lg z-30 mt-0 mb-16">
-    <div class="max-w-7xl mx-auto px-4">
-        <div class="flex justify-between h-16">
-            <div class="flex items-center space-x-4">
-                <img src="gambar/nolyxnew.png" alt="Nolyx" class="h-10 w-10">
-                <span id="cinzel" class="text-2xl font-bold text-green-700">Nolyx</span>
-            </div>
 
-            <!-- Desktop Menu -->
-            <div class="hidden md:flex items-center space-x-6">
-                <a href="index.html#join" class="font-medium text-gray-700 hover:text-green-700 transition-colors">Join</a>
-                <a href="index.html#about" class="font-medium text-gray-700 hover:text-green-700 transition-colors">About</a>
-                <a href="index.html#governance" class="font-medium text-gray-700 hover:text-green-700 transition-colors">Governance</a>
-                <button id="connect" class="font-medium text-gray-700 hover:text-green-700 transition-colors">Connect Metamask</button>
-                <p id="address" class="text-sm text-gray-600">not connected</p>
-            </div>
-
-            <!-- Mobile Menu Button -->
-            <div class="md:hidden flex items-center">
-                <button class="mobile-menu-button text-gray-700 p-2">
-                    <i class="fas fa-bars text-xl"></i>
-                </button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Mobile Menu -->
-    <div class="mobile-menu hidden md:hidden bg-white border-t">
-        <div class="px-4 py-2 space-y-3">
-            <a href="index.html#join" class="block py-2 text-gray-700 hover:text-green-700">Join</a>
-            <a href="index.html#about" class="block py-2 text-gray-700 hover:text-green-700">About</a>
-            <a href="index.html#governance" class="block py-2 text-gray-700 hover:text-green-700">Governance</a>
-            <button id="connect2" class="block text-left py-2 text-gray-700 hover:text-green-700">Connect Metamask</button>
-            <p id="address2" class="text-sm text-gray-600">not connected</p>
-        </div>
-    </div>
-</nav>
+    <!-- Dynamic Navbar will be inserted here automatically -->
 
 
 
@@ -226,25 +196,7 @@
 
     <!-- Scripts -->
     <script>
-        // Mobile menu toggle - using the same class as index.html
-        const button = document.querySelector('.mobile-menu-button');
-        const mobileMenu = document.querySelector('.mobile-menu');
-
-        if (button && mobileMenu) {
-            button.addEventListener('click', function() {
-                mobileMenu.classList.toggle('hidden');
-            });
-
-            document.addEventListener('click', function(event) {
-                if (!mobileMenu.contains(event.target) && !button.contains(event.target)) {
-                    mobileMenu.classList.add('hidden');
-                }
-            });
-
-            window.addEventListener('scroll', function() {
-                mobileMenu.classList.add('hidden');
-            });
-        }
+        // Mobile menu is now handled by navbar.js
 
         // Coming soon modal functions
         function showComingSoon(platform) {
@@ -336,73 +288,7 @@
         }
     </script>
 
-    <!-- Include script.js for mobile menu functionality -->
-    <script src="script.js"></script>
-
-    <!-- MetaMask Connection Scripts -->
-    <script>
-        // Function to truncate Ethereum address
-        function truncateAddress(address) {
-            if (!address) return '';
-            return `${address.slice(0, 6)}...${address.slice(-4)}`;
-        }
-
-        const connectBtn = document.getElementById('connect');
-        const addressDisplay = document.getElementById('address');
-
-        connectBtn.addEventListener('click', async () => {
-        if (!window.ethereum) {
-            alert("Please install MetaMask.");
-            return;
-        }
-
-        try {
-            // Minta akses akun dari MetaMask
-            const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
-            const address = accounts[0];
-
-            // Optional: buat provider dari ethers
-            const provider = new ethers.BrowserProvider(window.ethereum);
-
-            // Display truncated address
-            const truncatedAddress = truncateAddress(address);
-            addressDisplay.textContent = `Connected: ${truncatedAddress}`;
-            addressDisplay.title = address; // Show full address on hover
-        } catch (err) {
-            console.error(err);
-            addressDisplay.textContent = "Connection failed.";
-        }
-        });
-    </script>
-
-    <script>
-        const connectBtn2 = document.getElementById('connect2');
-        const addressDisplay2 = document.getElementById('address2');
-
-        connectBtn2.addEventListener('click', async () => {
-        if (!window.ethereum) {
-            alert("Please install MetaMask.");
-            return;
-        }
-
-        try {
-            // Minta akses akun dari MetaMask
-            const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
-            const address = accounts[0];
-
-            // Optional: buat provider dari ethers
-            const provider = new ethers.BrowserProvider(window.ethereum);
-
-            // Display truncated address (reuse the function from above)
-            const truncatedAddress = truncateAddress(address);
-            addressDisplay2.textContent = `Connected: ${truncatedAddress}`;
-            addressDisplay2.title = address; // Show full address on hover
-        } catch (err) {
-            console.error(err);
-            addressDisplay2.textContent = "Connection failed.";
-        }
-        });
-    </script>
+    <!-- Mobile menu and MetaMask connection are now handled by navbar.js and metamask.js -->
 
     <!-- Ethers.js Library -->
     <script src="https://cdn.jsdelivr.net/npm/ethers@6.8.1/dist/ethers.umd.min.js"></script>

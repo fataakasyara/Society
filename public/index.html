@@ -24,6 +24,11 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="stylesheet" href="style.css">
 
+    <!-- Dynamic Navbar and MetaMask Scripts -->
+    <script>window.noAutoNavbar = true;</script> <!-- Prevent auto-initialization since we have existing navbar -->
+    <script src="metamask.js"></script>
+    <script src="ai-button.js"></script>
+
 
 
 
@@ -115,7 +120,7 @@
         <div class="text-center">
             <h1 id="cinzel" class="animate-hero text-4xl md:text-6xl font-bold mb-4">Nolyx Society</h1>
             <br>
-            <a href="join.html" class="animate-button bg-green-700 hover:bg-green-800 text-white px-8 py-3 rounded-full transition-colors">
+            <a href="#join" class="animate-button bg-green-700 hover:bg-green-800 text-white px-8 py-3 rounded-full transition-colors">
                 Join Community
             </a>
 
@@ -425,20 +430,7 @@
             </div>
         </div>
     </section>
-    <div class="button-container">
-            <a href="ai.html" class="ai-button">
-            <span class="icon">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" />
-                <path d="M9 9l.01 0" />
-                <path d="M15 9l.01 0" />
-                <path d="M8 13a4 4 0 1 0 8 0m0 0h-8" />
-                </svg>
-            </span>
-            Ask Nolyx AI
-            </a>
-        </div>
+
     <footer class="bg-gradient-to-br from-green-800 to-green-900 text-white relative overflow-hidden">
         <!-- Background Pattern -->
         <div class="absolute inset-0 opacity-10">
@@ -636,68 +628,7 @@
 
 
 
-    <script>
-        // Function to truncate Ethereum address
-        function truncateAddress(address) {
-            if (!address) return '';
-            return `${address.slice(0, 6)}...${address.slice(-4)}`;
-        }
-
-        const connectBtn = document.getElementById('connect');
-        const addressDisplay = document.getElementById('address');
-
-        connectBtn.addEventListener('click', async () => {
-        if (!window.ethereum) {
-            alert("Please install MetaMask.");
-            return;
-        }
-
-        try {
-            // Minta akses akun dari MetaMask
-            const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
-            const address = accounts[0];
-
-            // Optional: buat provider dari ethers
-            const provider = new ethers.BrowserProvider(window.ethereum);
-
-            // Display truncated address
-            const truncatedAddress = truncateAddress(address);
-            addressDisplay.textContent = `Connected: ${truncatedAddress}`;
-            addressDisplay.title = address; // Show full address on hover
-        } catch (err) {
-            console.error(err);
-            addressDisplay.textContent = "Connection failed.";
-        }
-        });
-    </script>
-        <script>
-        const connectBtn2 = document.getElementById('connect2');
-        const addressDisplay2 = document.getElementById('address2');
-
-        connectBtn2.addEventListener('click', async () => {
-        if (!window.ethereum) {
-            alert("Please install MetaMask.");
-            return;
-        }
-
-        try {
-            // Minta akses akun dari MetaMask
-            const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
-            const address = accounts[0];
-
-            // Optional: buat provider dari ethers
-            const provider = new ethers.BrowserProvider(window.ethereum);
-
-            // Display truncated address (reuse the function from above)
-            const truncatedAddress = truncateAddress(address);
-            addressDisplay2.textContent = `Connected: ${truncatedAddress}`;
-            addressDisplay2.title = address; // Show full address on hover
-        } catch (err) {
-            console.error(err);
-            addressDisplay2.textContent = "Connection failed.";
-        }
-        });
-    </script>
+    <!-- MetaMask connection is now handled by metamask.js -->
 
     <!-- Universal Section Animation Script -->
     <script>

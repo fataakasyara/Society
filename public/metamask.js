@@ -5,6 +5,7 @@ class MetaMaskConnector {
         this.currentAccount = null;
         this.provider = null;
         this.init();
+        this.injectCustomCSS();
     }
 
     // Function to truncate Ethereum address
@@ -35,7 +36,7 @@ class MetaMaskConnector {
             });
 
             // Listen for chain changes
-            this.provider.on('chainChanged', (chainId) => {
+            this.provider.on('chainChanged', () => {
                 window.location.reload();
             });
         }
@@ -67,29 +68,31 @@ class MetaMaskConnector {
     // Connect to MetaMask
     async connect() {
         if (!window.ethereum) {
-            this.showAlert('Please install MetaMask to connect your wallet.', 'warning');
+            this.showAlert('MetaMask wallet not detected. Please install MetaMask extension to connect your wallet and access Web3 features.', 'warning');
             return;
         }
 
         try {
             // Request account access
-            const accounts = await this.provider.request({ 
-                method: 'eth_requestAccounts' 
+            const accounts = await this.provider.request({
+                method: 'eth_requestAccounts'
             });
 
             if (accounts.length > 0) {
                 this.handleAccountsChanged(accounts);
-                this.showAlert('Successfully connected to MetaMask!', 'success');
+                this.showAlert('🎉 Successfully connected to MetaMask! Your wallet is now linked to Nolyx Society.', 'success');
             }
         } catch (error) {
             console.error('Connection error:', error);
-            
+
             if (error.code === 4001) {
-                this.showAlert('Connection rejected by user.', 'info');
+                this.showAlert('Connection request was rejected. Please try again and approve the connection to continue.', 'info');
+            } else if (error.code === -32002) {
+                this.showAlert('Connection request is already pending. Please check your MetaMask extension.', 'info');
             } else {
-                this.showAlert('Failed to connect to MetaMask.', 'error');
+                this.showAlert('Failed to connect to MetaMask. Please make sure your wallet is unlocked and try again.', 'error');
             }
-            
+
             this.updateUI(false, null);
         }
     }
@@ -114,7 +117,7 @@ class MetaMaskConnector {
         this.isConnected = false;
         this.currentAccount = null;
         this.updateUI(false, null);
-        this.showAlert('Disconnected from MetaMask.', 'info');
+        this.showAlert('👋 Successfully disconnected from MetaMask. Your wallet is no longer connected to this site.', 'info');
     }
 
     // Update UI elements
@@ -167,11 +170,22 @@ class MetaMaskConnector {
                 text: message,
                 icon: type,
                 timer: 3000,
-                showConfirmButton: false,
-                toast: true,
-                position: 'top-end'
+                showConfirmButton: true,
+                confirmButtonText: 'OK',
+                confirmButtonColor: '#10b981',
+                toast: false,
+                position: 'center',
+                backdrop: true,
+                allowOutsideClick: true,
+                allowEscapeKey: true,
+                customClass: {
+                    popup: 'metamask-alert-popup',
+                    title: 'metamask-alert-title',
+                    content: 'metamask-alert-content',
+                    confirmButton: 'metamask-alert-button'
+                }
             };
-            
+
             Swal.fire(config);
         } else {
             // Fallback to regular alert
@@ -224,7 +238,7 @@ class MetaMaskConnector {
                 method: 'eth_getBalance',
                 params: [this.currentAccount, 'latest']
             });
-            
+
             // Convert from wei to ether
             const balanceInEther = parseInt(balance, 16) / Math.pow(10, 18);
             return balanceInEther.toFixed(4);
@@ -233,13 +247,165 @@ class MetaMaskConnector {
             return null;
         }
     }
+
+    // Inject custom CSS for MetaMask alerts
+    injectCustomCSS() {
+        // Check if CSS is already injected
+        if (document.querySelector('#metamask-alert-styles')) {
+            return;
+        }
+
+        const style = document.createElement('style');
+        style.id = 'metamask-alert-styles';
+        style.textContent = `
+            /* MetaMask Alert Custom Styles */
+            .metamask-alert-popup {
+                border-radius: 16px !important;
+                box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15) !important;
+                border: 2px solid #10b981 !important;
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+            }
+
+            .metamask-alert-title {
+                color: #1f2937 !important;
+                font-size: 1.5rem !important;
+                font-weight: 700 !important;
+                margin-bottom: 0.5rem !important;
+            }
+
+            .metamask-alert-content {
+                color: #4b5563 !important;
+                font-size: 1rem !important;
+                line-height: 1.5 !important;
+                margin-bottom: 1rem !important;
+            }
+
+            .metamask-alert-button {
+                background: linear-gradient(135deg, #10b981, #059669) !important;
+                border: none !important;
+                border-radius: 8px !important;
+                padding: 12px 24px !important;
+                font-weight: 600 !important;
+                font-size: 0.95rem !important;
+                transition: all 0.3s ease !important;
+                box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3) !important;
+            }
+
+            .metamask-alert-button:hover {
+                background: linear-gradient(135deg, #059669, #047857) !important;
+                transform: translateY(-2px) !important;
+                box-shadow: 0 6px 16px rgba(16, 185, 129, 0.4) !important;
+            }
+
+            .metamask-alert-button:focus {
+                outline: none !important;
+                box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.3) !important;
+            }
+
+            /* Success alert styling */
+            .swal2-success .swal2-icon {
+                border-color: #10b981 !important;
+            }
+
+            .swal2-success .swal2-success-ring {
+                border-color: #10b981 !important;
+            }
+
+            .swal2-success .swal2-success-fix {
+                background-color: #10b981 !important;
+            }
+
+            .swal2-success [class^='swal2-success-line'] {
+                background-color: #10b981 !important;
+            }
+
+            /* Error alert styling */
+            .swal2-error .swal2-icon {
+                border-color: #ef4444 !important;
+            }
+
+            .swal2-error .swal2-x-mark {
+                color: #ef4444 !important;
+            }
+
+            /* Warning alert styling */
+            .swal2-warning .swal2-icon {
+                border-color: #f59e0b !important;
+                color: #f59e0b !important;
+            }
+
+            /* Info alert styling */
+            .swal2-info .swal2-icon {
+                border-color: #3b82f6 !important;
+                color: #3b82f6 !important;
+            }
+
+            /* Backdrop styling */
+            .swal2-backdrop-show {
+                background: rgba(0, 0, 0, 0.4) !important;
+                backdrop-filter: blur(4px) !important;
+            }
+
+            /* Animation improvements */
+            .swal2-show {
+                animation: swal2-show 0.3s ease-out !important;
+            }
+
+            .swal2-hide {
+                animation: swal2-hide 0.15s ease-in !important;
+            }
+
+            @keyframes swal2-show {
+                0% {
+                    transform: scale(0.7) translateY(-20px);
+                    opacity: 0;
+                }
+                100% {
+                    transform: scale(1) translateY(0);
+                    opacity: 1;
+                }
+            }
+
+            @keyframes swal2-hide {
+                0% {
+                    transform: scale(1) translateY(0);
+                    opacity: 1;
+                }
+                100% {
+                    transform: scale(0.5) translateY(-20px);
+                    opacity: 0;
+                }
+            }
+
+            /* Mobile responsive */
+            @media (max-width: 768px) {
+                .metamask-alert-popup {
+                    margin: 1rem !important;
+                    max-width: calc(100% - 2rem) !important;
+                }
+
+                .metamask-alert-title {
+                    font-size: 1.25rem !important;
+                }
+
+                .metamask-alert-content {
+                    font-size: 0.9rem !important;
+                }
+
+                .metamask-alert-button {
+                    padding: 10px 20px !important;
+                    font-size: 0.9rem !important;
+                }
+            }
+        `;
+
+        document.head.appendChild(style);
+    }
 }
 
 // Initialize MetaMask connector when DOM is loaded
-let metaMaskConnector;
-
 document.addEventListener('DOMContentLoaded', () => {
-    metaMaskConnector = new MetaMaskConnector();
+    window.metaMaskConnector = new MetaMaskConnector();
 });
 
 // Export for use in other scripts

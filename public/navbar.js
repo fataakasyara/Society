@@ -96,16 +96,35 @@ class DynamicNavbar {
             baseItems.push(
                 { href: 'index.html#join', text: 'Join' },
                 { href: 'index.html#about', text: 'About' },
-                { href: 'index.html#governance', text: 'Governance' }
+                { href: 'index.html#governance', text: 'Governance' },
+                { href: 'blog.html', text: 'Blog' }
+            );
+        } else if (this.currentPage === 'blog') {
+            // For blog page, link back to index sections
+            baseItems.push(
+                { href: 'index.html#join', text: 'Join' },
+                { href: 'index.html#about', text: 'About' },
+                { href: 'index.html#governance', text: 'Governance' },
+                { href: 'blog.html', text: 'Blog' }
+            );
+        } else if (this.currentPage === 'ai') {
+            // For AI page, link back to index sections
+            baseItems.push(
+                { href: 'index.html#join', text: 'Join' },
+                { href: 'index.html#about', text: 'About' },
+                { href: 'index.html#governance', text: 'Governance' },
+                { href: 'blog.html', text: 'Blog' }
             );
         } else {
             // For index page, use anchor links
             baseItems.push(
                 { href: '#join', text: 'Join' },
                 { href: '#about', text: 'About' },
-                { href: '#governance', text: 'Governance' }
+                { href: '#governance', text: 'Governance' },
+                { href: 'blog.html', text: 'Blog' }
             );
         }
+
 
 
         return baseItems;
@@ -141,8 +160,8 @@ class DynamicNavbar {
 
     // Check if a page exists (simplified check)
     pageExists(page) {
-        // For now, assume ai.html exists since we're implementing it
-        const commonPages = ['ai.html', 'about.html', 'contact.html'];
+        // For now, assume these pages exist since we're implementing them
+        const commonPages = ['ai.html', 'blog.html', 'about.html', 'contact.html'];
         return commonPages.includes(page);
     }
 

@@ -180,13 +180,23 @@
 
             async loadPostsData() {
                 try {
+                    // Check if wallet is connected before loading posts
+                    const walletConnected = window.metaMaskConnector && window.metaMaskConnector.isConnected;
+
+                    if (!walletConnected) {
+                        console.log("Wallet belum connect, tidak bisa load posts.");
+                        this.allPosts = [];
+                        return;
+                    }
+
                     console.log('Loading posts data from API...');
-                    const response = await fetch('https://api.jsonbin.io/v3/b/685bf56e8561e97a502b8b22');
+                    const response = await fetch('https://api.jsonbin.io/v3/b/685bffd98561e97a502b9481');
+
                     if (!response.ok) {
                         throw new Error(`Failed to load posts data: ${response.status}`);
                     }
+
                     const data = await response.json();
-                    // JSONBin API returns data in 'record' property
                     this.allPosts = data.record.posts || data.record || [];
                     console.log('Posts loaded successfully from API:', this.allPosts.length, 'posts');
                 } catch (error) {

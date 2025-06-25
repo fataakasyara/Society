@@ -71,7 +71,7 @@
             </div>
 
             <!-- Connected State -->
-            <div id="ConnectedState" class="hidden w-full">
+            <div id="connectedState" class="hidden w-full">
                 <!-- Welcome Header -->
                 <section class="bg-gradient-to-br from-green-600 to-emerald-700 text-white py-16">
                     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -196,12 +196,14 @@
 
             async loadPostsData() {
                 try {
+                    console.log('Loading posts data...');
                     const response = await fetch('posts.json');
                     if (!response.ok) {
-                        throw new Error('Failed to load posts data');
+                        throw new Error(`Failed to load posts data: ${response.status}`);
                     }
                     const data = await response.json();
                     this.allPosts = data.posts;
+                    console.log('Posts loaded successfully:', this.allPosts.length, 'posts');
                 } catch (error) {
                     console.error('Error loading posts:', error);
                     this.allPosts = [];
@@ -210,12 +212,18 @@
             }
 
             async checkWalletConnection() {
+                console.log('Checking wallet connection...');
                 // Wait for MetaMask connector to be ready
                 setTimeout(() => {
+                    console.log('MetaMask connector:', window.metaMaskConnector);
+                    console.log('Is connected:', window.metaMaskConnector?.isConnected);
+
                     if (window.metaMaskConnector && window.metaMaskConnector.isConnected) {
+                        console.log('Wallet connected, showing connected state');
                         this.showConnectedState();
                         this.updateWelcomeMessage();
                     } else {
+                        console.log('Wallet not connected, showing not connected state');
                         this.showNotConnectedState();
                     }
                 }, 500);
@@ -235,13 +243,31 @@
             }
 
             showNotConnectedState() {
-                document.getElementById('notConnectedState').classList.remove('hidden');
-                document.getElementById('connectedState').classList.add('hidden');
+                console.log('Showing not connected state');
+                const notConnected = document.getElementById('notConnectedState');
+                const connected = document.getElementById('connectedState');
+
+                if (notConnected && connected) {
+                    notConnected.classList.remove('hidden');
+                    connected.classList.add('hidden');
+                    console.log('Not connected state shown');
+                } else {
+                    console.error('Could not find state elements:', { notConnected, connected });
+                }
             }
 
             showConnectedState() {
-                document.getElementById('notConnectedState').classList.add('hidden');
-                document.getElementById('connectedState').classList.remove('hidden');
+                console.log('Showing connected state');
+                const notConnected = document.getElementById('notConnectedState');
+                const connected = document.getElementById('connectedState');
+
+                if (notConnected && connected) {
+                    notConnected.classList.add('hidden');
+                    connected.classList.remove('hidden');
+                    console.log('Connected state shown');
+                } else {
+                    console.error('Could not find state elements:', { notConnected, connected });
+                }
             }
 
             updateWelcomeMessage() {

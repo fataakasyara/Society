@@ -330,11 +330,18 @@
             }
 
             loadBlogPosts() {
+                console.log('Loading blog posts...', {
+                    totalPosts: this.allPosts.length,
+                    currentCategory: this.currentCategory,
+                    searchQuery: this.searchQuery
+                });
+
                 let filteredPosts = this.allPosts;
 
                 // Filter by category
                 if (this.currentCategory !== 'all') {
                     filteredPosts = filteredPosts.filter(post => post.category === this.currentCategory);
+                    console.log('After category filter:', filteredPosts.length, 'posts');
                 }
 
                 // Filter by search query
@@ -344,17 +351,22 @@
                         post.excerpt.toLowerCase().includes(this.searchQuery) ||
                         post.category.toLowerCase().includes(this.searchQuery)
                     );
+                    console.log('After search filter:', filteredPosts.length, 'posts');
                 }
 
                 const postsToShow = filteredPosts.slice(0, this.postsPerPage * this.currentPage);
+                console.log('Posts to show:', postsToShow.length);
+
                 this.renderPosts(postsToShow);
 
                 // Update load more button visibility
                 const loadMoreBtn = document.getElementById('loadMoreBtn');
-                if (filteredPosts.length <= this.postsPerPage * this.currentPage) {
-                    loadMoreBtn.style.display = 'none';
-                } else {
-                    loadMoreBtn.style.display = 'block';
+                if (loadMoreBtn) {
+                    if (filteredPosts.length <= this.postsPerPage * this.currentPage) {
+                        loadMoreBtn.style.display = 'none';
+                    } else {
+                        loadMoreBtn.style.display = 'block';
+                    }
                 }
 
                 // Show no results message if needed
@@ -369,7 +381,7 @@
             showErrorMessage() {
                 const container = document.getElementById('blogPosts');
                 container.innerHTML = `
-                    <div class="col-span-full text-center py-16">
+                    <div class="col-span-full text-center py-16 opacity-100">
                         <div class="max-w-md mx-auto">
                             <i class="fas fa-exclamation-triangle text-6xl text-red-400 mb-6"></i>
                             <h3 class="text-2xl font-bold text-gray-600 mb-4">Failed to Load Posts</h3>
@@ -388,7 +400,7 @@
             renderPosts(posts) {
                 const container = document.getElementById('blogPosts');
                 container.innerHTML = posts.map(post => `
-                    <article class="animate-card bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 cursor-pointer" onclick="window.location.href='post.html?id=${post.id}'">
+                    <article class="animate-card animate bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 cursor-pointer" onclick="window.location.href='post.html?id=${post.id}'">
                         <div class="relative">
                             <img src="${post.image}" alt="${post.title}" class="w-full h-48 object-cover">
                             <div class="absolute top-4 left-4">
@@ -412,6 +424,12 @@
                         </div>
                     </article>
                 `).join('');
+
+                // Add staggered animation delays for better visual effect
+                const cards = container.querySelectorAll('.animate-card');
+                cards.forEach((card, index) => {
+                    card.style.transitionDelay = `${index * 0.1}s`;
+                });
             }
 
             formatCategoryName(category) {
@@ -431,7 +449,7 @@
                 const container = document.getElementById('blogPosts');
                 if (show) {
                     container.innerHTML = `
-                        <div class="col-span-full text-center py-16">
+                        <div class="col-span-full text-center py-16 opacity-100">
                             <div class="max-w-md mx-auto">
                                 <i class="fas fa-search text-6xl text-gray-300 mb-6"></i>
                                 <h3 class="text-2xl font-bold text-gray-600 mb-4">No Articles Found</h3>

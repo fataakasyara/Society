@@ -71,7 +71,7 @@
             </div>
 
             <!-- Connected State -->
-            <div id="connectedState" class="hidden w-full">
+            <div id="ConnectedState" class="hidden w-full">
                 <!-- Welcome Header -->
                 <section class="bg-gradient-to-br from-green-600 to-emerald-700 text-white py-16">
                     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -187,11 +187,26 @@
                 this.init();
             }
 
-            init() {
-                this.allPosts = this.generateSamplePosts();
+            async init() {
+                await this.loadPostsData();
                 this.checkWalletConnection();
                 this.setupEventListeners();
                 this.loadBlogPosts();
+            }
+
+            async loadPostsData() {
+                try {
+                    const response = await fetch('posts.json');
+                    if (!response.ok) {
+                        throw new Error('Failed to load posts data');
+                    }
+                    const data = await response.json();
+                    this.allPosts = data.posts;
+                } catch (error) {
+                    console.error('Error loading posts:', error);
+                    this.allPosts = [];
+                    this.showErrorMessage();
+                }
             }
 
             async checkWalletConnection() {
@@ -325,96 +340,29 @@
                 this.loadBlogPosts();
             }
 
-            generateSamplePosts() {
-                return [
-                    {
-                        id: 1,
-                        title: "Understanding Web3: The Future of the Internet",
-                        excerpt: "Explore how Web3 is revolutionizing the way we interact with the internet through decentralization and blockchain technology.",
-                        category: "web3",
-                        date: "2025-01-15",
-                        readTime: "5 min read",
-                        image: "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=400&h=250&fit=crop"
-                    },
-                    {
-                        id: 2,
-                        title: "Smart Contracts: Building the Foundation of DeFi",
-                        excerpt: "Learn how smart contracts are powering the decentralized finance revolution and creating new financial opportunities.",
-                        category: "smartcontracts",
-                        date: "2025-01-12",
-                        readTime: "7 min read",
-                        image: "https://images.unsplash.com/photo-1621761191319-c6fb62004040?w=400&h=250&fit=crop"
-                    },
-                    {
-                        id: 3,
-                        title: "Blockchain Fundamentals: A Beginner's Guide",
-                        excerpt: "Master the basics of blockchain technology and understand how it's transforming industries worldwide.",
-                        category: "blockchain",
-                        date: "2025-01-10",
-                        readTime: "6 min read",
-                        image: "https://images.unsplash.com/photo-1639762681057-408e52192e55?w=400&h=250&fit=crop"
-                    },
-                    {
-                        id: 4,
-                        title: "DeFi Protocols: Yield Farming and Liquidity Mining",
-                        excerpt: "Discover the world of decentralized finance protocols and learn how to maximize your crypto earnings through yield farming.",
-                        category: "defi",
-                        date: "2025-01-08",
-                        readTime: "8 min read",
-                        image: "https://images.unsplash.com/photo-1640340434855-6084b1f4901c?w=400&h=250&fit=crop"
-                    },
-                    {
-                        id: 5,
-                        title: "NFT Marketplace Development Tutorial",
-                        excerpt: "Step-by-step guide to building your own NFT marketplace using Solidity, React, and IPFS for decentralized storage.",
-                        category: "tutorials",
-                        date: "2025-01-05",
-                        readTime: "12 min read",
-                        image: "https://images.unsplash.com/photo-1640826844110-c162e4dda4b8?w=400&h=250&fit=crop"
-                    },
-                    {
-                        id: 6,
-                        title: "DAO Governance: The Future of Decentralized Organizations",
-                        excerpt: "Understand how Decentralized Autonomous Organizations are reshaping corporate governance and community decision-making.",
-                        category: "dao",
-                        date: "2025-01-03",
-                        readTime: "9 min read",
-                        image: "https://images.unsplash.com/photo-1559526324-4b87b5e36e44?w=400&h=250&fit=crop"
-                    },
-                    {
-                        id: 7,
-                        title: "Ethereum 2.0: Proof of Stake and Scalability",
-                        excerpt: "Deep dive into Ethereum's transition to Proof of Stake and how it addresses scalability challenges in blockchain networks.",
-                        category: "blockchain",
-                        date: "2025-01-01",
-                        readTime: "10 min read",
-                        image: "https://images.unsplash.com/photo-1621761191319-c6fb62004040?w=400&h=250&fit=crop"
-                    },
-                    {
-                        id: 8,
-                        title: "Building Your First dApp: Complete Guide",
-                        excerpt: "Learn to build decentralized applications from scratch using modern Web3 technologies and best practices.",
-                        category: "tutorials",
-                        date: "2024-12-28",
-                        readTime: "15 min read",
-                        image: "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=400&h=250&fit=crop"
-                    },
-                    {
-                        id: 9,
-                        title: "NFT Art and Digital Ownership Revolution",
-                        excerpt: "Explore how NFTs are transforming digital art ownership and creating new opportunities for artists and collectors.",
-                        category: "nft",
-                        date: "2024-12-25",
-                        readTime: "6 min read",
-                        image: "https://images.unsplash.com/photo-1640826844110-c162e4dda4b8?w=400&h=250&fit=crop"
-                    }
-                ];
+            showErrorMessage() {
+                const container = document.getElementById('blogPosts');
+                container.innerHTML = `
+                    <div class="col-span-full text-center py-16">
+                        <div class="max-w-md mx-auto">
+                            <i class="fas fa-exclamation-triangle text-6xl text-red-400 mb-6"></i>
+                            <h3 class="text-2xl font-bold text-gray-600 mb-4">Failed to Load Posts</h3>
+                            <p class="text-gray-500 mb-6">
+                                We're having trouble loading the blog posts. Please try refreshing the page.
+                            </p>
+                            <button onclick="window.location.reload();"
+                                    class="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-lg transition-colors">
+                                Refresh Page
+                            </button>
+                        </div>
+                    </div>
+                `;
             }
 
             renderPosts(posts) {
                 const container = document.getElementById('blogPosts');
                 container.innerHTML = posts.map(post => `
-                    <article class="animate-card bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
+                    <article class="animate-card bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 cursor-pointer" onclick="window.location.href='post.html?id=${post.id}'">
                         <div class="relative">
                             <img src="${post.image}" alt="${post.title}" class="w-full h-48 object-cover">
                             <div class="absolute top-4 left-4">
@@ -429,12 +377,12 @@
                                 <i class="fas fa-clock mr-2"></i>
                                 <span>${post.readTime}</span>
                             </div>
-                            <h3 class="text-xl font-bold text-gray-800 mb-3 hover:text-green-600 transition-colors cursor-pointer">${post.title}</h3>
+                            <h3 class="text-xl font-bold text-gray-800 mb-3 hover:text-green-600 transition-colors">${post.title}</h3>
                             <p class="text-gray-600 mb-4">${post.excerpt}</p>
-                            <button class="text-green-600 hover:text-green-700 font-semibold flex items-center transition-colors">
+                            <div class="text-green-600 hover:text-green-700 font-semibold flex items-center transition-colors">
                                 Read More
                                 <i class="fas fa-arrow-right ml-2"></i>
-                            </button>
+                            </div>
                         </div>
                     </article>
                 `).join('');

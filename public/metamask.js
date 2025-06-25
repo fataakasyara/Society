@@ -399,10 +399,23 @@ class MetaMaskConnector {
                 background-color: #10b981 !important;
                 height: 5px !important;
                 border-radius: 2px !important;
+                position: absolute !important;
+                z-index: 2 !important;
+            }
+
+            /* Make sure the success icon container is properly sized */
+            .swal2-success .swal2-icon {
+                position: relative !important;
+                box-sizing: border-box !important;
+                width: 80px !important;
+                height: 80px !important;
+                border: 4px solid #10b981 !important;
+                border-radius: 50% !important;
+                margin: 20px auto !important;
             }
 
             .swal2-success .swal2-success-line.swal2-success-line-tip {
-                left: 28px !important;
+                left: 14px !important;
                 top: 46px !important;
                 width: 25px !important;
                 transform: rotate(45deg) !important;
@@ -421,46 +434,46 @@ class MetaMaskConnector {
             @keyframes swal2-animate-success-line-tip {
                 0% {
                     width: 0;
-                    left: 1px;
-                    top: 19px;
+                    left: 14px;
+                    top: 46px;
                 }
                 54% {
                     width: 0;
-                    left: 1px;
-                    top: 19px;
+                    left: 14px;
+                    top: 46px;
                 }
                 70% {
-                    width: 50px;
-                    left: -8px;
-                    top: 37px;
+                    width: 25px;
+                    left: 14px;
+                    top: 46px;
                 }
                 84% {
-                    width: 17px;
-                    left: 21px;
-                    top: 48px;
+                    width: 25px;
+                    left: 14px;
+                    top: 46px;
                 }
                 100% {
                     width: 25px;
                     left: 14px;
-                    top: 45px;
+                    top: 46px;
                 }
             }
 
             @keyframes swal2-animate-success-line-long {
                 0% {
                     width: 0;
-                    right: 46px;
-                    top: 54px;
+                    right: 8px;
+                    top: 38px;
                 }
                 65% {
                     width: 0;
-                    right: 46px;
-                    top: 54px;
+                    right: 8px;
+                    top: 38px;
                 }
                 84% {
-                    width: 55px;
-                    right: 0px;
-                    top: 35px;
+                    width: 47px;
+                    right: 8px;
+                    top: 38px;
                 }
                 100% {
                     width: 47px;

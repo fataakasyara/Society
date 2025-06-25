@@ -73,7 +73,10 @@
             <!-- Connected State -->
             <div id="connectedState" class="hidden w-full">
                 <!-- Welcome Header -->
-                <section class="bg-gradient-to-br from-green-600 to-emerald-700 text-white py-16">
+                        <section class="hero-section h-96 flex items-center justify-center text-white mt-16">
+                            <div id="vermin"  class="text-center">
+                                <h1 id="category-title" class="text-4xl md:text-6xl font-bold mb-4">Nolyx Blog</h1>
+                            </div>
                     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
                         <div class="animate-title">
                             <p id="welcomeMessage" class="text-xl md:text-2xl text-green-100 mb-8 max-w-3xl mx-auto">
@@ -111,10 +114,9 @@
                                         <label for="searchCategory" class="block text-sm font-medium text-gray-700 mb-1">Filter by Category:</label>
                                         <select
                                             id="searchCategory"
-                                            class="w-full p-3 border border-gray-300 rounded-lg focus:ring-green-500 focus:border-green-500 transition-colors"
+                                            class="w-full text-gray-700 p-3 border border-gray-300 rounded-lg focus:ring-green-500 focus:border-green-500 transition-colors"
                                         >
                                             <option value="all">All Categories</option>
-                                            <option value="web3">Web3</option>
                                             <option value="blockchain">Blockchain</option>
                                             <option value="defi">DeFi</option>
                                             <option value="smartcontracts">Smart Contracts</option>
@@ -133,15 +135,9 @@
                         <!-- Categories -->
                         <div class="text-center mb-16">
                             <h2 class="animate-title text-3xl md:text-4xl font-bold text-gray-800 mb-8">
-                                Explore Categories
+                                Popular Categories
                             </h2>
                             <div class="animate-content flex flex-wrap justify-center gap-4 mb-12">
-                                <button class="category-btn active bg-green-600 text-white px-6 py-3 rounded-full font-semibold transition-all duration-300 hover:bg-green-700" data-category="all">
-                                    All Posts
-                                </button>
-                                <button class="category-btn bg-gray-200 text-gray-700 px-6 py-3 rounded-full font-semibold transition-all duration-300 hover:bg-green-600 hover:text-white" data-category="web3">
-                                    Web3
-                                </button>
                                 <button class="category-btn bg-gray-200 text-gray-700 px-6 py-3 rounded-full font-semibold transition-all duration-300 hover:bg-green-600 hover:text-white" data-category="blockchain">
                                     Blockchain
                                 </button>

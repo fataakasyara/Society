@@ -137,22 +137,49 @@ class MetaMaskConnector {
             if (button && addressEl) {
                 if (connected && address) {
                     const truncatedAddress = this.truncateAddress(address);
-                    
-                    // Update button text
-                    button.textContent = 'Connected';
+
+                    // Update button with checkmark animation
+                    button.innerHTML = `
+                        <div class="metamask-connected-container">
+                            <div class="metamask-checkmark">
+                                <div class="metamask-checkmark-circle">
+                                    <div class="metamask-checkmark-stem"></div>
+                                    <div class="metamask-checkmark-kick"></div>
+                                </div>
+                            </div>
+                            <span class="metamask-connected-text">Connected</span>
+                        </div>
+                    `;
                     button.classList.add('connected');
                     button.disabled = false;
-                    
+
+                    // Trigger checkmark animation
+                    setTimeout(() => {
+                        const checkmark = button.querySelector('.metamask-checkmark');
+                        if (checkmark) {
+                            checkmark.classList.add('animate');
+                        }
+                    }, 100);
+
+                    // Trigger celebration effect
+                    setTimeout(() => {
+                        button.classList.add('celebrate');
+                        this.createConfettiEffect(button);
+                        setTimeout(() => {
+                            button.classList.remove('celebrate');
+                        }, 600);
+                    }, 800);
+
                     // Update address display
                     addressEl.textContent = truncatedAddress;
                     addressEl.title = address; // Show full address on hover
                     addressEl.classList.add('connected');
                 } else {
                     // Reset to disconnected state
-                    button.textContent = 'Connect MetaMask';
+                    button.innerHTML = 'Connect MetaMask';
                     button.classList.remove('connected');
                     button.disabled = false;
-                    
+
                     addressEl.textContent = 'Not connected';
                     addressEl.title = '';
                     addressEl.classList.remove('connected');
@@ -222,6 +249,62 @@ class MetaMaskConnector {
             account: this.currentAccount,
             truncatedAccount: this.currentAccount ? this.truncateAddress(this.currentAccount) : null
         };
+    }
+
+    // Create confetti effect for successful connection
+    createConfettiEffect(button) {
+        const colors = ['#10b981', '#059669', '#34d399', '#6ee7b7', '#a7f3d0'];
+        const confettiCount = 15;
+
+        for (let i = 0; i < confettiCount; i++) {
+            setTimeout(() => {
+                const confetti = document.createElement('div');
+                confetti.className = 'metamask-confetti';
+                confetti.style.cssText = `
+                    position: absolute;
+                    width: 8px;
+                    height: 8px;
+                    background: ${colors[Math.floor(Math.random() * colors.length)]};
+                    border-radius: 50%;
+                    pointer-events: none;
+                    z-index: 10000;
+                `;
+
+                // Position relative to button
+                const buttonRect = button.getBoundingClientRect();
+                confetti.style.left = (buttonRect.left + buttonRect.width / 2) + 'px';
+                confetti.style.top = (buttonRect.top + buttonRect.height / 2) + 'px';
+
+                document.body.appendChild(confetti);
+
+                // Animate confetti
+                const angle = (Math.PI * 2 * i) / confettiCount;
+                const velocity = 100 + Math.random() * 50;
+                const gravity = 300;
+                const life = 1000 + Math.random() * 500;
+
+                let startTime = Date.now();
+                const animate = () => {
+                    const elapsed = Date.now() - startTime;
+                    const progress = elapsed / life;
+
+                    if (progress >= 1) {
+                        confetti.remove();
+                        return;
+                    }
+
+                    const x = Math.cos(angle) * velocity * (elapsed / 1000);
+                    const y = Math.sin(angle) * velocity * (elapsed / 1000) + 0.5 * gravity * Math.pow(elapsed / 1000, 2);
+
+                    confetti.style.transform = `translate(${x}px, ${y}px) scale(${1 - progress})`;
+                    confetti.style.opacity = 1 - progress;
+
+                    requestAnimationFrame(animate);
+                };
+
+                requestAnimationFrame(animate);
+            }, i * 50);
+        }
     }
 
     // Get network information
@@ -467,6 +550,174 @@ class MetaMaskConnector {
                     right: 8px;
                     top: 38px;
                 }
+            }
+
+            /* MetaMask Connected Button Checkmark Animation */
+            .metamask-connected-container {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 8px;
+            }
+
+            .metamask-checkmark {
+                width: 20px;
+                height: 20px;
+                position: relative;
+                transform: scale(0);
+                transition: transform 0.3s ease-in-out;
+            }
+
+            .metamask-checkmark.animate {
+                transform: scale(1);
+            }
+
+            .metamask-checkmark-circle {
+                width: 20px;
+                height: 20px;
+                border: 2px solid #10b981;
+                border-radius: 50%;
+                position: relative;
+                background: #10b981;
+                animation: metamask-checkmark-circle 0.6s ease-in-out;
+            }
+
+            .metamask-checkmark-stem,
+            .metamask-checkmark-kick {
+                position: absolute;
+                background: white;
+                border-radius: 2px;
+            }
+
+            .metamask-checkmark-stem {
+                width: 3px;
+                height: 9px;
+                left: 11px;
+                top: 6px;
+                transform: rotate(45deg);
+                animation: metamask-checkmark-stem 0.4s ease-in-out 0.2s both;
+            }
+
+            .metamask-checkmark-kick {
+                width: 5px;
+                height: 3px;
+                left: 8px;
+                top: 12px;
+                transform: rotate(-45deg);
+                animation: metamask-checkmark-kick 0.2s ease-in-out 0.3s both;
+            }
+
+            .metamask-connected-text {
+                font-weight: 600;
+                color: white;
+                animation: metamask-text-appear 0.3s ease-in-out 0.4s both;
+                opacity: 0;
+            }
+
+            /* Keyframes for checkmark animation */
+            @keyframes metamask-checkmark-circle {
+                0% {
+                    transform: scale(0) rotate(45deg);
+                    opacity: 0;
+                }
+                50% {
+                    transform: scale(1.2) rotate(45deg);
+                    opacity: 1;
+                }
+                100% {
+                    transform: scale(1) rotate(45deg);
+                    opacity: 1;
+                }
+            }
+
+            @keyframes metamask-checkmark-stem {
+                0% {
+                    height: 0;
+                    opacity: 0;
+                }
+                100% {
+                    height: 9px;
+                    opacity: 1;
+                }
+            }
+
+            @keyframes metamask-checkmark-kick {
+                0% {
+                    width: 0;
+                    opacity: 0;
+                }
+                100% {
+                    width: 5px;
+                    opacity: 1;
+                }
+            }
+
+            @keyframes metamask-text-appear {
+                0% {
+                    opacity: 0;
+                    transform: translateX(-10px);
+                }
+                100% {
+                    opacity: 1;
+                    transform: translateX(0);
+                }
+            }
+
+            /* Enhanced connected button styling */
+            .metamask-alert-button.connected {
+                background: linear-gradient(135deg, #10b981, #059669) !important;
+                border: none !important;
+                box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3) !important;
+                transform: scale(1.02);
+                transition: all 0.3s ease !important;
+                position: relative;
+                overflow: hidden;
+            }
+
+            .metamask-alert-button.connected::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%);
+                animation: metamask-pulse 2s ease-in-out infinite;
+                pointer-events: none;
+            }
+
+            .metamask-alert-button.connected:hover {
+                background: linear-gradient(135deg, #059669, #047857) !important;
+                box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4) !important;
+                transform: scale(1.05);
+            }
+
+            @keyframes metamask-pulse {
+                0% {
+                    opacity: 0;
+                    transform: scale(0.8);
+                }
+                50% {
+                    opacity: 1;
+                    transform: scale(1.2);
+                }
+                100% {
+                    opacity: 0;
+                    transform: scale(1.4);
+                }
+            }
+
+            /* Success celebration effect */
+            .metamask-alert-button.connected.celebrate {
+                animation: metamask-celebrate 0.6s ease-in-out;
+            }
+
+            @keyframes metamask-celebrate {
+                0% { transform: scale(1.02); }
+                25% { transform: scale(1.1) rotate(2deg); }
+                50% { transform: scale(1.05) rotate(-1deg); }
+                75% { transform: scale(1.08) rotate(1deg); }
+                100% { transform: scale(1.02) rotate(0deg); }
             }
 
             /* Animation improvements */

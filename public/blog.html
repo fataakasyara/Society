@@ -28,7 +28,7 @@
     <script src="ai-button.js"></script>
     <script src="footer.js"></script>
 </head>
-<body class="hero section bg-gradient-to-r from-green-400 to-green-600 bg-size-200 bg-pos-0 animation" style="background-size: 200% 200%; background-position: 0% 0%; animation: gradient 2s ease infinite;
+<body class="bg-gradient-to-r from-green-600 to-emerald-500 bg-size-200 bg-pos-0 animation" style="background-size: 200% 200%; background-position: 0% 0%; animation: gradient 2s ease infinite;
     @keyframes gradient {
         0% {
             background-position: 0% 0%;
@@ -168,6 +168,7 @@
                 this.currentPage = 1;
                 this.searchQuery = '';
                 this.allPosts = [];
+                this.postsLoaded = false; // Flag to prevent multiple loading
                 this.init();
             }
 
@@ -221,11 +222,20 @@
                 if (window.metaMaskConnector) {
                     // Check periodically for connection status changes
                     setInterval(() => {
-                        if (window.metaMaskConnector.isConnected && document.getElementById('notConnectedState').style.display !== 'none') {
+                        const notConnectedElement = document.getElementById('notConnectedState');
+                        const connectedElement = document.getElementById('connectedState');
+
+                        // Only change state if current state doesn't match wallet status
+                        if (window.metaMaskConnector.isConnected &&
+                            notConnectedElement && !notConnectedElement.classList.contains('hidden')) {
+                            console.log('Wallet connected, switching to connected state');
                             this.showConnectedState();
                             this.updateWelcomeMessage();
-                        } else if (!window.metaMaskConnector.isConnected && document.getElementById('connectedState').style.display !== 'none') {
+                        } else if (!window.metaMaskConnector.isConnected &&
+                                   connectedElement && !connectedElement.classList.contains('hidden')) {
+                            console.log('Wallet disconnected, switching to not connected state');
                             this.showNotConnectedState();
+                            this.postsLoaded = false; // Reset flag when wallet disconnects
                         }
                     }, 1000);
                 }
@@ -255,10 +265,16 @@
                     connected.classList.remove('hidden');
                     console.log('Connected state shown');
 
-                    // Load posts data when wallet is connected
-                    this.loadPostsData().then(() => {
-                        this.loadBlogPosts();
-                    });
+                    // Load posts data only once when wallet is first connected
+                    if (!this.postsLoaded) {
+                        console.log('Loading posts for the first time...');
+                        this.postsLoaded = true;
+                        this.loadPostsData().then(() => {
+                            this.loadBlogPosts();
+                        });
+                    } else {
+                        console.log('Posts already loaded, skipping reload');
+                    }
                 } else {
                     console.error('Could not find state elements:', { notConnected, connected });
                 }

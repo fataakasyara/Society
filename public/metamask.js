@@ -313,44 +313,44 @@ class MetaMaskConnector {
                 box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.3) !important;
             }
 
-            /* Success alert styling */
+            /* Success alert styling - Clean and Simple */
             .swal2-success .swal2-icon {
-                border-color: #10b981 !important;
-                color: #10b981 !important;
+                border: 4px solid #10b981 !important;
+                border-radius: 50% !important;
+                width: 80px !important;
+                height: 80px !important;
+                position: relative !important;
+                margin: 20px auto !important;
+                background: transparent !important;
+                box-sizing: border-box !important;
             }
 
-            .swal2-success .swal2-success-ring {
-                border-color: #10b981 !important;
-            }
-
-            .swal2-success .swal2-success-fix {
-                background-color: #10b981 !important;
-            }
-
-            .swal2-success [class^='swal2-success-line'] {
-                background-color: #10b981 !important;
-            }
-
-            .swal2-success .swal2-success-line-tip {
-                background-color: #10b981 !important;
-            }
-
-            .swal2-success .swal2-success-line-long {
-                background-color: #10b981 !important;
-            }
-
-            /* Fix success checkmark animation */
+            /* Hide all default SweetAlert2 success elements */
+            .swal2-success .swal2-success-ring,
+            .swal2-success .swal2-success-fix,
+            .swal2-success [class^='swal2-success-line'],
+            .swal2-success .swal2-success-line-tip,
+            .swal2-success .swal2-success-line-long,
+            .swal2-success .swal2-success-circular-line-left,
+            .swal2-success .swal2-success-circular-line-right,
             .swal2-success::before,
             .swal2-success::after {
-                background: #10b981 !important;
+                display: none !important;
             }
 
-            .swal2-success .swal2-success-circular-line-left {
-                background-color: #10b981 !important;
-            }
-
-            .swal2-success .swal2-success-circular-line-right {
-                background-color: #10b981 !important;
+            /* Create clean checkmark using Font Awesome */
+            .swal2-success .swal2-icon::after {
+                content: '\f00c' !important;
+                font-family: 'Font Awesome 6 Free' !important;
+                font-weight: 900 !important;
+                font-size: 40px !important;
+                color: #10b981 !important;
+                position: absolute !important;
+                top: 50% !important;
+                left: 50% !important;
+                transform: translate(-50%, -50%) scale(0) !important;
+                display: block !important;
+                animation: checkmark-appear 0.6s ease-out 0.2s forwards !important;
             }
 
             /* Error alert styling */

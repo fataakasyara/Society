@@ -26,6 +26,7 @@
     <script src="navbar.js"></script>
     <script src="metamask.js"></script>
     <script src="ai-button.js"></script>
+    <script src="session-manager.js"></script>
 </head>
 <body class="bg-gradient-to-r from-green-400 to-green-600 bg-size-200 bg-pos-0 animation" style="background-size: 200% 200%; background-position: 0% 0%; animation: gradient 2s ease infinite;
     @keyframes gradient {
@@ -172,6 +173,72 @@
 
     <!-- Scripts -->
     <script>
+        // Check verification session on page load using session manager
+        function checkVerificationSession() {
+            if (window.NolyxSession) {
+                return window.NolyxSession.requireVerification();
+            } else {
+                // Fallback if session manager not loaded
+                const sessionData = localStorage.getItem('nolyxVerificationSession');
+                const sessionVerified = sessionStorage.getItem('nolyxVerified');
+
+                if (sessionData) {
+                    try {
+                        const session = JSON.parse(sessionData);
+                        const currentTime = Date.now();
+
+                        if (session.verified && session.expires > currentTime) {
+                            console.log('Verification session valid');
+                            return true;
+                        } else {
+                            localStorage.removeItem('nolyxVerificationSession');
+                            sessionStorage.removeItem('nolyxVerified');
+                        }
+                    } catch (e) {
+                        localStorage.removeItem('nolyxVerificationSession');
+                        sessionStorage.removeItem('nolyxVerified');
+                    }
+                }
+
+                if (!sessionVerified) {
+                    console.log('No valid verification session found, redirecting to verification page');
+                    window.location.href = 'verif.html';
+                    return false;
+                }
+
+                return true;
+            }
+        }
+
+        // Run verification check when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            checkVerificationSession();
+
+            // Show session info if available
+            if (window.NolyxSession) {
+                const sessionInfo = window.NolyxSession.getSessionInfo();
+                if (sessionInfo) {
+                    console.log(`Session expires in: ${sessionInfo.hoursLeft}h ${sessionInfo.minutesLeft}m`);
+
+                    // Show warning if session is expiring soon
+                    if (window.NolyxSession.isSessionExpiringSoon()) {
+                        console.warn('Session will expire soon!');
+                    }
+                }
+            }
+        });
+
+        // Function to clear verification session (for logout or security purposes)
+        function clearVerificationSession() {
+            if (window.NolyxSession) {
+                window.NolyxSession.clearSession();
+            } else {
+                localStorage.removeItem('nolyxVerificationSession');
+                sessionStorage.removeItem('nolyxVerified');
+                console.log('Verification session cleared');
+            }
+        }
+
         // Mobile menu is now handled by navbar.js
 
         // Coming soon modal functions

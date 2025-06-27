@@ -1,13 +1,4 @@
 [build]
   functions = "netlify/functions"
   publish = "public"
-[[redirects]]
-  from = "/*"
-  to = "/verif.html"
-  status = 200
-  force = false
-  
-[[redirects]]
-  from = "/verif.html"
-  to = "/verif.html"
-  status = 200
+

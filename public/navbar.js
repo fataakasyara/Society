@@ -97,7 +97,7 @@ class DynamicNavbar {
                 { href: 'index.html#join', text: 'Join' },
                 { href: 'index.html#about', text: 'About' },
                 { href: 'index.html#governance', text: 'Governance' },
-                { href: 'blog.html', text: 'Blog' }
+                { href: 'blog.html', text: 'Learn' }
             );
         } else if (this.currentPage === 'blog') {
             // For blog page, link back to index sections
@@ -105,7 +105,7 @@ class DynamicNavbar {
                 { href: 'index.html#join', text: 'Join' },
                 { href: 'index.html#about', text: 'About' },
                 { href: 'index.html#governance', text: 'Governance' },
-                { href: 'blog.html', text: 'Blog' }
+                { href: 'blog.html', text: 'Learn' }
             );
         } else if (this.currentPage === 'ai') {
             // For AI page, link back to index sections
@@ -113,7 +113,7 @@ class DynamicNavbar {
                 { href: 'index.html#join', text: 'Join' },
                 { href: 'index.html#about', text: 'About' },
                 { href: 'index.html#governance', text: 'Governance' },
-                { href: 'blog.html', text: 'Blog' }
+                { href: 'blog.html', text: 'Learn' }
             );
         } else {
             // For index page, use anchor links
@@ -121,7 +121,7 @@ class DynamicNavbar {
                 { href: '#join', text: 'Join' },
                 { href: '#about', text: 'About' },
                 { href: '#governance', text: 'Governance' },
-                { href: 'blog.html', text: 'Blog' }
+                { href: 'blog.html', text: 'Learn' }
             );
         }
 

@@ -1,23 +1,16 @@
 <!DOCTYPE html>
-<html>
+<html lang="id">
   <head>
-    <title>reCAPTCHA demo: Simple page</title>
+    <meta charset="UTF-8">
+    <title>Verifikasi dengan reCAPTCHA</title>
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-    <script>
-      function onSubmit(token) {
-        // Redirect manual ke home.html setelah verifikasi
-        window.location.href = "home.html";
-      }
-    </script>
   </head>
   <body>
-    <form id="demo-form" action="#" method="POST">
-      <button class="g-recaptcha" 
-              data-sitekey="6LcSRG8rAAAAAHsaD659uONebE2uwrkotKUvzWnr" 
-              data-callback="onSubmit"
-              data-action="submit">
-        Masuk ke Halaman Utama
-      </button>
+    <h2>Verifikasi bahwa kamu manusia</h2>
+    <form action="index.html" method="GET">
+      <div class="g-recaptcha" data-sitekey="6LdGRm8rAAAAAJMzE_ezbOw3Cxan67FHmkY9atJG"></div>
+      <br/>
+      <input type="submit" value="Masuk">
     </form>
   </body>
 </html>

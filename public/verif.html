@@ -287,8 +287,18 @@
       alert('Please complete the reCAPTCHA verification');
       return false;
     } else {
+      // Prevent default form submission
+      e.preventDefault();
+
       // Create verification session using session manager
       createVerificationSession();
+
+      // Redirect after session is created
+      setTimeout(() => {
+        window.location.href = 'join.html';
+      }, 1000);
+
+      return false;
     }
   });
 

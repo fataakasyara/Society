@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <title>Verifikasi</title>
-  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+   <script src="https://www.google.com/recaptcha/api.js"></script>
   <style>
     body {
       background: #111;
@@ -22,15 +22,15 @@
 <body>
   <h2>Verifikasi bahwa Anda adalah manusia</h2>
   <p>Silakan centang kotak di bawah ini:</p>
+  <button class="g-recaptcha" 
+        data-sitekey="6Ld7QG8rAAAAACBN5TNvVNP4wrYD5oc_Yg1a5ceB" 
+        data-callback='onSubmit' 
+        data-action='submit'>Submit</button>
 
-  <div class="g-recaptcha" data-sitekey="6Ld7QG8rAAAAACBN5TNvVNP4wrYD5oc_Yg1a5ceB" data-callback="captchaBerhasil"></div>
-
-  <script>
-    function captchaBerhasil() {
-      setTimeout(() => {
-        window.location.href = "index.html";
-      }, 1000);
-    }
-  </script>
+ <script>
+   function onSubmit(token) {
+     document.getElementById("demo-form").submit();
+   }
+ </script>
 </body>
 </html>
